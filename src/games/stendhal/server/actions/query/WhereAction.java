@@ -49,38 +49,44 @@ public class WhereAction implements ActionListener {
 			final String whoName = action.get(TARGET);
 
 			final StendhalRPRuleProcessor rules = SingletonRepository.getRuleProcessor();
+			
+			if (whoName != "") {
+				new GameEvent(player.getName(), WHERE, whoName).raise();
 
-			new GameEvent(player.getName(), WHERE, whoName).raise();
+				final Player who = rules.getPlayer(whoName);
+				final DomesticAnimal animal = player.searchAnimal(whoName, false);
 
-			final Player who = rules.getPlayer(whoName);
-			final DomesticAnimal animal = player.searchAnimal(whoName, false);
+				if (who != null) {
+					if (who.isGhost() && !who.equals(player)) {
+						player.sendPrivateText("No player or pet named \"" + whoName + "\" is currently logged in.");
+					} else {
+						final StendhalRPZone zone = who.getZone();
 
-			if (who != null) {
-				if (who.isGhost() && !who.equals(player)) {
-					player.sendPrivateText("No player or pet named \"" + whoName + "\" is currently logged in.");
-				} else {
-					final StendhalRPZone zone = who.getZone();
-
-					if (zone != null) {
-						if (who.equals(player)) {
-							player.sendPrivateText("You are in " + zone.getName()
-									+ " at (" + who.getX() + "," + who.getY() + ")");
-						} else {
-							player.sendPrivateText(who.getTitle() + " is in " + zone.getName()
-									+ " at (" + who.getX() + "," + who.getY() + ")");
+						if (zone != null) {
+							if (who.equals(player)) {
+								player.sendPrivateText("You are in " + zone.getName()
+										+ " at (" + who.getX() + "," + who.getY() + ")");
+							} else {
+								player.sendPrivateText(who.getTitle() + " is in " + zone.getName()
+										+ " at (" + who.getX() + "," + who.getY() + ")");
+							}
 						}
 					}
 				}
+
+				if (animal != null) {
+					player.sendPrivateText("Your " + ItemTools.itemNameToDisplayName(animal.get("type"))
+							+ " is at (" + animal.getX() + "," + animal.getY() + ")");
+				}
+
+				if ((who == null) && (animal == null)) {
+					player.sendPrivateText("No player or pet named \"" + whoName + "\" is currently logged in.");
+				}
+			} else {
+				player.sendPrivateText("You have not given the name of a player or pet.");
 			}
 
-			if (animal != null) {
-				player.sendPrivateText("Your " + ItemTools.itemNameToDisplayName(animal.get("type"))
-						+ " is at (" + animal.getX() + "," + animal.getY() + ")");
-			}
-
-			if ((who == null) && (animal == null)) {
-				player.sendPrivateText("No player or pet named \"" + whoName + "\" is currently logged in.");
-			}
+			
 
 			player.notifyWorldAboutChanges();
 		}
