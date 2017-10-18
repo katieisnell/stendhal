@@ -22,11 +22,10 @@ public class ScubaLicenseQuizTest {
 	public void testBookContainsAnswers() {
 		
 		// Set the book to test up as a sign.
-		Sign diverBook = (Sign) zone.getEntityAt(28,4);
+		Sign diverBook = (Sign)zone.getEntityAt(28,4);
 		
 		// Test that the keywords "wind" and "wave" are in the book.
-		assertTrue(diverBook.getText().contains("wind"));
-		assertTrue(diverBook.getText().contains("Waves"));
+		assertTrue(diverBook.getText().contains("Waves are caused by wind."));
 	} // testBookContainsAnswer
 	
 	// Our zone to work within.
