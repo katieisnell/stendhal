@@ -198,7 +198,7 @@ public class HungryJoshua extends AbstractQuest {
 
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
 		reward.add(new DropItemAction("sandwich", FOOD_AMOUNT));
-		reward.add(new IncreaseXPAction(150));
+		reward.add(new IncreaseXPAction(300));
 		reward.add(new SetQuestAction(QUEST_SLOT, "joshua"));
 		reward.add(new IncreaseKarmaAction(15));
 		reward.add(new InflictStatusOnNPCAction("sandwich"));
@@ -243,7 +243,7 @@ public class HungryJoshua extends AbstractQuest {
 		// you get a keyring object instead what we currently
 		// have - a button in the settings panel
 		final List<ChatAction> reward = new LinkedList<ChatAction>();
-		reward.add(new IncreaseXPAction(50));
+		reward.add(new IncreaseXPAction(75));
 		reward.add(new SetQuestAction(QUEST_SLOT, "done"));
 		if (System.getProperty("stendhal.container") != null) {
 			reward.add(new CreateSlotAction(ImmutableList.of("belt", "back")));
