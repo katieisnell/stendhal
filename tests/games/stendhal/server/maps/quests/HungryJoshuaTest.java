@@ -126,7 +126,8 @@ public class HungryJoshuaTest {
 		// [07:28] kymara earns 150 experience points.
 		assertEquals("Thank you! Please let Xoderos know that I am fine. Say my name, Joshua, so he knows that you saw me. He will probably give you something in return.", getReply(npc));
 		assertFalse(player.isEquipped("sandwich"));
-		assertThat(player.getXP(), greaterThan(xp));
+		//Check that player was given 300 xp
+		assertThat(player.getXP(), greaterThan(xp+299));
 		assertThat(player.getQuest(questSlot), is("joshua"));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
@@ -145,7 +146,8 @@ public class HungryJoshuaTest {
 		en.step(player, "joshua");
 		// [07:29] kymara earns 50 experience points.
 		assertEquals("I'm glad Joshua is well. Now, what can I do for you? I know, I'll fix that broken key ring that you're carrying ... there, it should work now!", getReply(npc));
-		assertThat(player.getXP(), greaterThan(xp2));
+		//Check that the player was given 75 xp
+		assertThat(player.getXP(), greaterThan(xp2 + 74));
 		assertTrue(player.isQuestCompleted(questSlot));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
