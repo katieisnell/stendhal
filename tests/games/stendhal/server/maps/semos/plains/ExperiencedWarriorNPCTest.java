@@ -20,6 +20,10 @@ import static utilities.SpeakerNPCTestHelper.getReply;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.mapstuff.spawner.CreatureRespawnPoint;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
 import utilities.QuestHelper;
@@ -118,4 +122,43 @@ public class ExperiencedWarriorNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Farewell and godspeed!", getReply(npc));
 	}
+	
+	/**
+	 * Test for appropriate zone mapping for malleus_plain. Fails if Starkad uses the name of the location
+	 * as it is written in the source code
+	 */
+	@Test
+	public void checkZoneDescribe()
+	{
+		final StendhalRPZone zone = setupZone("malleus_plain"); 
+		final Creature creature = new Creature(SingletonRepository.getEntityManager().getCreature("demon"));
+		final CreatureRespawnPoint point = new CreatureRespawnPoint(zone, 20, 20, creature, 1);
+		zone.add(point);
+		final SpeakerNPC npc = getNPC("Starkad");
+		final Engine en = npc.getEngine();
+		
+		//go through the dialogue tree
+		assertTrue(en.step(player, "hi"));
+		assertEquals("Greetings! How may I help you?", getReply(npc));
+		
+		assertTrue(en.step(player, "creatures"));
+		assertEquals("Which creature you would like to hear more about?", getReply(npc));
+		
+		assertFalse(player.isEquipped("money", 257));
+		assertTrue(equipWithMoney(player, 257));
+		assertTrue(player.isEquipped("money", 257));
+		
+		// ask for information about demon
+		assertTrue(en.step(player, "demon"));
+		assertEquals("This information costs 257. Are you still interested?", getReply(npc));
+
+		// check that the reply does not contain the source code name for the zone
+		assertTrue(en.step(player, "yes"));
+		assertFalse(getReply(npc).toLowerCase().contains("malleus_plain"));
+		
+		//say goodbye
+		assertTrue(en.step(player, "bye"));
+		assertEquals("Farewell and godspeed!", getReply(npc));
+	}
+	
 }
