@@ -34,7 +34,7 @@ public class ScubaLicenseQuizTest {
 	@BeforeClass
 	public static void setUp() throws Exception {
 		// Create an ados zone.
-		ZonesXMLLoader adosZone = new ZonesXMLLoader(new URI("/build/build_server_xmlconf/data/conf/zones/ados.xml"));
+		ZonesXMLLoader adosZone = new ZonesXMLLoader(new URI("/data/conf/zones/ados.xml"));
 
 		// Load the zone.
 		adosZone.load();
