@@ -78,6 +78,24 @@ public class WhereActionTest {
 		pq.onAction(player, action);
 		assertThat(player.events().get(0).get("text"), equalTo("No player or pet named \"NotThere\" is currently logged in."));
 	}
+	
+	
+	/**
+	 * Tests for onActionEmptyTarget.
+	 */
+	@Test
+	public void testOnActionEmptyTarget() {
+		final WhereAction pq = new WhereAction();
+		final RPAction action = new RPAction();
+		action.put(Actions.TYPE, "where");
+		action.put(Actions.TARGET, "");
+		
+		final Player player = PlayerTestHelper.createPlayer("player");
+		MockStendhalRPRuleProcessor.get().addPlayer(player);
+		
+		pq.onAction(player, action);
+		assertThat(player.events().get(0).get("text"), equalTo("You have not given the name of a player or pet."));
+	}
 
 	/**
 	 * Tests for onAction.
