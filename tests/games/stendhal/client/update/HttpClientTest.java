@@ -52,7 +52,7 @@ public class HttpClientTest {
 	/**
 	 * Tests for getInputStream
 	 */
-	@Ignor
+	@Ignore
 	@Test
 	public void testGetInputStream() {
 		HttpClient client = new HttpClient("http://sf.net/projects/arianne");
