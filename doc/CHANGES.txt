@@ -1,6 +1,15 @@
 ﻿Changelog
 ---------
 
+1.27
+*bugfixes*
+- changed unhelpful zone description in Starkad response
+- fixed typo in mine town revival NPC dialogue
+- fixed weird where command error message
+- fixed missing line in library book (diver's handbook)
+- fixed weird gardener greeting
+- fixed weird speeds for dwarf and elder dwarf
+- increased xp reward for joshua sandwich quest
 1.26
 *world*
 - made new image for Gashadokuro

@@ -167,6 +167,27 @@ Authors of Stendhal are:
   · Bugs fixer
   - Diligent Dodo (aka Soniccuz)
   · Artist (mimic, dodo, suba diving concepts)
+- Tudor Ruxandu
+  · Bugs fixer
+  · Coder
+- Luke Sheldon
+  · Bugs fixer
+  · Coder
+- Katie Snell
+  · Bugs fixer
+  · Coder
+- Poppy Reid
+  · Bugs fixer
+  · Coder
+- Anthony Sikosa
+  · Bugs fixer
+  · Coder
+- Diana Pislaru
+  · Bugs fixer
+  · Coder
+- Khoi Minh Nguyen
+  · Bugs fixer
+  · Coder
 
 We also thank many who have contributed to Stendhal by providing patches,
 which the rest of the team commited on their behalf. 
