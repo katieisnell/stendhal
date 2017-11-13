@@ -20,7 +20,14 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipBankScrollAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 
 /**
  * Builds the bank teller NPC.
@@ -64,6 +71,24 @@ public class TellerNPC implements ZoneConfigurator {
 				addJob("I am the manager for the bank.");
 				addHelp("Just to the left, you can see a few chests. Open one and you can store your belongings in it.");
 				addGoodbye("Have a nice day.");
+				
+				final List<ChatAction> mark_bank_scroll = new LinkedList<ChatAction>();
+ 				mark_bank_scroll.add(new DropItemAction("empty scroll"));
+ 				mark_bank_scroll.add(new EquipBankScrollAction("bank_fado"));
+
+ 				add(ConversationStates.ATTENDING, 
+ 					"mark", 
+ 					new PlayerHasItemWithHimCondition("empty scroll"),
+ 					ConversationStates.ATTENDING, 
+ 					"Here you go!", 
+ 					new MultipleActions(mark_bank_scroll));
+ 				
+ 				add(ConversationStates.ATTENDING, 
+ 	 				"mark", 
+ 	 				new NotCondition(new PlayerHasItemWithHimCondition("empty scroll")),
+ 	 				ConversationStates.ATTENDING, 
+ 	 				"You need an empty scroll so I can mark it!", 
+ 	 				null);
 			}
 		};
 

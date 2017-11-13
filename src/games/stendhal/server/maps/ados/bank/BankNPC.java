@@ -12,13 +12,22 @@
  ***************************************************************************/
 package games.stendhal.server.maps.ados.bank;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipBankScrollAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 
 /**
  * Builds the Ados bank npc.
@@ -62,6 +71,25 @@ public class BankNPC implements ZoneConfigurator {
 				addReply("trading","To start a trade with another player, right-click on them and select 'Trade'. If they also want to trade with you, you'll see a window pop up where you can drag items to offer, and see what is being offered to you. Both click Offer, and then you both need to Accept the offer to complete the trade.");
 				addQuest("Sorry, I have no job for you at the moment.");
  				addGoodbye("Thank you for visiting our bank!");
+ 				
+ 				final List<ChatAction> mark_bank_scroll = new LinkedList<ChatAction>();
+ 				mark_bank_scroll.add(new DropItemAction("empty scroll"));
+ 				mark_bank_scroll.add(new EquipBankScrollAction("bank_ados"));
+
+ 				add(ConversationStates.ATTENDING, 
+ 					"mark", 
+ 					new PlayerHasItemWithHimCondition("empty scroll"),
+ 					ConversationStates.ATTENDING, 
+ 					"Here you go!", 
+ 					new MultipleActions(mark_bank_scroll));
+ 				
+ 				add(ConversationStates.ATTENDING, 
+ 	 				"mark", 
+ 	 				new NotCondition(new PlayerHasItemWithHimCondition("empty scroll")),
+ 	 				ConversationStates.ATTENDING, 
+ 	 				"You need an empty scroll so I can mark it!", 
+ 	 				null);
+ 				
 			}
 
 			@Override
