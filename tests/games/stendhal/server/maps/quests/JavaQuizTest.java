@@ -166,7 +166,7 @@ public class JavaQuizTest {
 	      } // else if
 	      else if(isQ3)
 	      {
-	    	  en.step(player,"Infty");
+	    	  en.step(player,"Infinity");
 	    	  assertEquals("Correct, well done! You now get some XP and a certificate!", getReply(npc));
 	      } // else if
 	    } // if
@@ -247,7 +247,7 @@ public class JavaQuizTest {
 	      } // else if
 	      else if(isQ3)
 	      {
-	    	  en.step(player, "Infty");
+	    	  en.step(player, "Infinity");
 	    	  assertEquals("Correct, well done! You now get some XP and a certificate!", getReply(npc));
 	      } // else if
 	    } // if

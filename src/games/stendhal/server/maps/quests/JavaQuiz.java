@@ -42,7 +42,7 @@ public class JavaQuiz extends AbstractQuest {
 			answers.put("An object is an instance of a ...",
 							"class");
 			answers.put("What result would Java give for 1/0.0?",
-							"Infty");
+							"Infinity");
 	}
 
         // Put in slot name
