@@ -114,6 +114,7 @@ public class StendhalQuestSystem {
 		loadQuest(new HungryJoshua());
 		loadQuest(new IcecreamForAnnie());
 		loadQuest(new ImperialPrincess());
+		loadQuest(new JavaQuiz());
 		loadQuest(new JailedBarbarian());
 		loadQuest(new JailedDwarf());
 		loadQuest(new LearnAboutKarma());
