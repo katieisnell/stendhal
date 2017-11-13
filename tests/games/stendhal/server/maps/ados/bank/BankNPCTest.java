@@ -27,13 +27,11 @@ import utilities.PlayerTestHelper;
 
 public class BankNPCTest {
 
-	private static Player player;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		MockStendlRPWorld.get();
 
-		player = PlayerTestHelper.createPlayer("bob");
 	}
 
 	/**
@@ -58,6 +56,7 @@ public class BankNPCTest {
 	 */
 	@Test
 	public void testHiandBye() {
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		SingletonRepository.getRPWorld();
 		final BankNPC bankConfigurator = new BankNPC();
 		final StendhalRPZone zone = new StendhalRPZone("testzone");
@@ -77,9 +76,10 @@ public class BankNPCTest {
 		assertThat(engine.getCurrentState(), is(ConversationStates.IDLE));
 		assertThat(getReply(bankTeller), is("Thank you for visiting our bank!"));
 	}
-	
+
 	@Test
-	public void testMarkScroll() {
+	public void testMarkCommandWhenPlayerDoesNotHaveEmptyScrolls() {
+		final Player player = PlayerTestHelper.createPlayer("bob");
 		SingletonRepository.getRPWorld();
 		final BankNPC bankConfigurator = new BankNPC();
 		final StendhalRPZone zone = new StendhalRPZone("testzone");
@@ -95,17 +95,51 @@ public class BankNPCTest {
 		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
 		assertThat(getReply(bankTeller), is("Welcome to Ados Bank!"));
 		
-		// equip player with 50 empty scrolls
+		assertEquals(0, player.getNumberOfEquipped("empty scroll"));
+		
+		// test mark command
+		sentence = new SentenceImplementation(new Expression("mark", ExpressionType.VERB));
+		engine.step(player, sentence);
+		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
+		assertThat(getReply(bankTeller), is("You need an empty scroll so I can mark it!"));
+		assertEquals(0, player.getNumberOfEquipped("empty scroll"));
+	}
+
+	@Test
+	public void testMarkCommandWhenPlayerHasEmptyScrolls() {
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		SingletonRepository.getRPWorld();
+		final BankNPC bankConfigurator = new BankNPC();
+		final StendhalRPZone zone = new StendhalRPZone("testzone");
+		bankConfigurator.configureZone(zone, null);
+		final SpeakerNPC bankTeller = (SpeakerNPC) zone.getNPCList().get(0);
+		assertThat(bankTeller.getName(), is("Rachel"));
+		final Engine engine = bankTeller.getEngine();
+		engine.setCurrentState(ConversationStates.IDLE);
+
+		// start conversation
+		Sentence sentence = new SentenceImplementation(new Expression("hi", ExpressionType.VERB));
+		engine.step(player, sentence);
+		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
+		assertThat(getReply(bankTeller), is("Welcome to Ados Bank!"));
+		
+		// equip player with 50 empty scrolls 
 		final StackableItem emptyScroll = new StackableItem("empty scroll", "", "", null);
 		emptyScroll.setQuantity(50);
 		emptyScroll.setID(new ID(2, "testzone"));
 		player.getSlot("bag").add(emptyScroll);
 		assertEquals(50, player.getNumberOfEquipped("empty scroll"));
 		
+		assertEquals(0, player.getNumberOfEquipped("bank scroll"));
+		
 		// test mark command
 		sentence = new SentenceImplementation(new Expression("mark", ExpressionType.VERB));
 		engine.step(player, sentence);
+		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
+		assertThat(getReply(bankTeller), is("Here you go!"));
 		assertEquals(49, player.getNumberOfEquipped("empty scroll"));
+		assertEquals(1, player.getNumberOfEquipped("bank scroll"));
+		assertEquals(player.getFirstEquipped("bank scroll").getInfoString(), player.getName() + " " + "bank_ados");
 	}
 
 }
