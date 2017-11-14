@@ -52,11 +52,12 @@ public class BankScrollTest {
 	@Test
 	public void shouldDisappearWhenUsedByWrongPlayer()
 	{
-		Player player1 = player = PlayerTestHelper.createPlayer("tom");
+		Player player1 = PlayerTestHelper.createPlayer("tom");
 		String bank = "bank";
 		BankScroll scroll = (BankScroll) SingletonRepository.getEntityManager().getItem("bank scroll");
 		scroll.setInfo(player, bank);
 		player1.equip("bag", scroll);
+		assertTrue(scroll.equals(player1.getSlot("bag").getFirst()));
 		scroll.useScroll(player1);
 		assertFalse(scroll.equals(player1.getSlot("bag").getFirst()));
 		assertEquals("You cannot view another player's bank statement", PlayerTestHelper.getPrivateReply(player1));

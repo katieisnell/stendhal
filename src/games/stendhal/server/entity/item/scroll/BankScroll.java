@@ -63,10 +63,16 @@ public class BankScroll extends PersistentScroll{
 			player.sendPrivateText(bankNameMapping + " contains " + contents);
 			return true;
 		}
-		
-		
-		
+		else if (player.getName() != null)
+		{
+			splitOff(1);
+			player.sendPrivateText("You cannot view another player's bank statement");	
+			player.notifyWorldAboutChanges();
+			return true;
+		}
 		return false;
+		
+		
 	}
 	
 	public void setInfo(Player player, String bankName)
