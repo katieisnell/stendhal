@@ -32,7 +32,6 @@ public class EquipBankScrollAction implements ChatAction {
 		BankScroll scroll = (BankScroll) SingletonRepository.getEntityManager().getItem(itemName);
 		scroll.setInfo(player, bankName);
 		scroll.setQuantity(1);
-		scroll.setBoundTo(player.getName());
 		player.equipOrPutOnGround(scroll);
 		TutorialNotifier.equippedByNPC(player, scroll);
 		player.notifyWorldAboutChanges();
