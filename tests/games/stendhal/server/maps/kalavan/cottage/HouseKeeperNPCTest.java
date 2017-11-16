@@ -103,6 +103,14 @@ public class HouseKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "jar of honey"));
 		assertEquals("Don't you know the beekeeper of Fado Forest?", getReply(npc));
+		
+		assertTrue(en.step(player, "logbook"));
+		assertEquals("Ah... Lon must have left the logbooks here when he rushed out... Here you go, please take one!", getReply(npc));
+		assertTrue(player.isEquipped("logbook"));
+		
+		assertTrue(en.step(player, "logbook"));
+		assertEquals("Oh... But I just gave you a logbook? Surely you only need one...", getReply(npc));
+		assertTrue(player.isEquipped("logbook", 1));	
 
 		assertFalse(player.isEquipped("tea"));
 

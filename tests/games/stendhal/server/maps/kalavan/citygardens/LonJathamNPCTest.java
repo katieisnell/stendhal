@@ -72,11 +72,11 @@ public class LonJathamNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		// Check asking him about his job
 		assertTrue(en.step(player, "job"));
-		assertEquals("I'm a Java lecturer! Ask me to take a Java test!", getReply(npc));
+		assertEquals("I'm a Java lecturer! Ask me to take a Java #test!", getReply(npc));
 
 		// Check asking him for help
 		assertTrue(en.step(player, "help"));
-		assertEquals("Hm, maybe you'd like to answer some questions about java?", getReply(npc));
+		assertEquals("Hm, maybe you'd like to answer some questions in my Java #test?", getReply(npc));
 
 		// Check asking him about studying
 		assertTrue(en.step(player, "study"));
@@ -84,7 +84,7 @@ public class LonJathamNPCTest extends ZonePlayerAndNPCTestImpl {
 		
 		// Check asking him about his quest
 		assertTrue(en.step(player, "quest"));
-		assertEquals("I have a quest for you! Answer some Java questions for me!", getReply(npc));
+		assertEquals("I have a #test for you! Answer some Java questions for me!", getReply(npc));
 		
 		// Check asking him what he offers
 		assertTrue(en.step(player, "offer"));
