@@ -22,7 +22,11 @@ import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
+import games.stendhal.server.entity.npc.condition.AndCondition;
+//import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+//import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotStartedCondition;
@@ -68,29 +72,73 @@ public class JavaQuiz extends AbstractQuest {
 	// See if player can get their certificate and XP from answering a question.
 	private void createCertificate() {
 		final SpeakerNPC lon = npcs.get("Lon Jatham");
-
-		lon.add(ConversationStates.IDLE,
-			ConversationPhrases.GREETING_MESSAGES,
-			new GreetingMatchesNameCondition(lon.getName()), true,
-			ConversationStates.ATTENDING, null,
-			new ChatAction() {
-				@Override
-				public void fire(final Player player, final Sentence sentence, final EventRaiser npc) {
-					if (!player.hasQuest(QUEST_SLOT)) {
-						npc.say("I am a Java lecturer who's stuck in his ways!");
-					} else if (!player.isQuestCompleted(QUEST_SLOT)) {
-						final String name = player.getQuest(QUEST_SLOT);
-						 npc.say("You're back! I trust you read my book. " + name);
-						npc.setCurrentState(ConversationStates.QUESTION_1);
-					} else {
-						 npc.say("Congratulations!");
-					}
-				}
-			});
-
+		
+		// The following are all the combinations of greetings Lon can give
+		lon.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(						
+						new NotCondition(new PlayerHasItemWithHimCondition("logbook")),
+						new QuestNotStartedCondition(QUEST_SLOT)),
+				ConversationStates.IDLE,
+				"Hello stranger. I will not talk to you until you bring your logbook! I think I left some in Granny Graham's cottage...",
+				null				
+				);
+		
+		lon.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(						
+						new NotCondition(new PlayerHasItemWithHimCondition("logbook")),
+						new QuestActiveCondition(QUEST_SLOT)),
+				ConversationStates.IDLE,
+				"Hello student. Where did your logbook go?! I won't let you finish my Java quiz unless you have your logbook!",
+				null				
+				);
+		
+		lon.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES,
+				new AndCondition(						
+						new NotCondition(new PlayerHasItemWithHimCondition("logbook")),
+						new QuestCompletedCondition(QUEST_SLOT)),
+				ConversationStates.IDLE,
+				"Hello student. Where did your logbook go?! I don't talk to students who don't have their logbook, even if they get 100% in my test...",
+				null				
+				);		
+		
+		lon.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES, 
+				new AndCondition(						
+						new PlayerHasItemWithHimCondition("logbook"),
+						new QuestNotStartedCondition(QUEST_SLOT)),
+				ConversationStates.ATTENDING,
+				"Hello strang- Oh you have your logbook now! Would you like to try my Java #test?",
+				null				
+				);
+		
+		lon.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES, 
+				new AndCondition(						
+						new PlayerHasItemWithHimCondition("logbook"),
+						new QuestActiveCondition(QUEST_SLOT)),
+				ConversationStates.ATTENDING,
+				"Hello student. As you have your logbook now, would you like to try my Java #test again?",
+				null	
+				);
+		
+		lon.add(ConversationStates.IDLE, 
+				ConversationPhrases.GREETING_MESSAGES, 
+				new AndCondition(						
+						new PlayerHasItemWithHimCondition("logbook"),
+						new QuestCompletedCondition(QUEST_SLOT)),
+				ConversationStates.ATTENDING,
+				"Hello my favourite student! Thank you for always keeping your logbook on you and getting 100% in my test!",
+				null				
+				);
+		
+		
+		// Now we add the rest of the possible things Lon can say after greeting the user
 		lon.add(ConversationStates.ATTENDING,
 				ConversationPhrases.combine(ConversationPhrases.QUEST_MESSAGES, Arrays.asList("exam", "test")),
-				new QuestNotStartedCondition(QUEST_SLOT),
+				new AndCondition(new QuestNotStartedCondition(QUEST_SLOT), new PlayerHasItemWithHimCondition("logbook")),
 				ConversationStates.QUEST_OFFERED,
 				"Are you ready to take the test?",
 				null);

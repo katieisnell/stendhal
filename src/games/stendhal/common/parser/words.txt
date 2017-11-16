@@ -360,7 +360,7 @@ cauliflower	OBJ-FOO	cauliflowers
 cavalry	OBJ	cavalries
 cave	OBJ	caves
 cell	OBJ	cells
-certificate	OBJ	certificate
+certificate	OBJ	certificates
 chain	OBJ	chains
 chainmail	OBJ	chainmails
 challenge	OBJ	challenges
