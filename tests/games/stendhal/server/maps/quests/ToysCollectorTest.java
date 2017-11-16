@@ -14,6 +14,7 @@ package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 import java.util.Arrays;
 
@@ -23,28 +24,39 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.server.core.engine.SingletonRepository;
+import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.npc.ConversationPhrases;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendhalRPRuleProcessor;
+import games.stendhal.server.maps.MockStendlRPWorld;
+import games.stendhal.server.maps.ados.rosshouse.FatherNPC;
 import marauroa.common.Log4J;
 import utilities.PlayerTestHelper;
 
 public class ToysCollectorTest {
-	private ToysCollector quest;
+	private ToysCollector quest = null;
+	private Player player = null;
+	private Engine engine = null; 
 
 	@BeforeClass
 	public static void setupFixture() {
 		Log4J.init();
 		MockStendhalRPRuleProcessor.get();
 		PlayerTestHelper.generateNPCRPClasses();
+		MockStendlRPWorld.get();
+		StendhalRPZone zone = new StendhalRPZone("testzone");
+		new FatherNPC().configureZone(zone, null);
+		
 	}
 
 	@Before
 	public void setUp() throws Exception {
 		SingletonRepository.getNPCList().add(new SpeakerNPC("Anna"));
 		quest = new ToysCollector();
-
 		quest.addToWorld();
+		player = PlayerTestHelper.createPlayer("player");
 	}
 
 	@After
@@ -95,4 +107,21 @@ public class ToysCollectorTest {
 		assertTrue(quest.shouldWelcomeAfterQuestIsCompleted());
 	}
 
+	@Test
+	public void testTeddyTriggerPhrase() {
+		
+		SpeakerNPC father = SingletonRepository.getNPCList().get("Mr Ross");
+		engine = father.getEngine();
+		
+		// check if Mr Ross replies
+		engine.step(player, "hi");
+		assertTrue(father.isTalking());
+		assertEquals("Hi there.", getReply(father));
+		
+		// check if Mr Ross invites player upstairs when toys are mentioned
+		engine.step(player, "toys");
+		assertEquals("I see that you're looking for some toys. " +
+				     "Why don't you go upstairs and help yourself?",
+				     getReply(father));
+	}
 }
