@@ -41,19 +41,10 @@ public class LonJathamNPC implements ZoneConfigurator {
 
 		};
 
-        // Set entity class as Sprite for Lon Jatham
 		npc.setEntityClass("lonjathamnpc");
-
-        // Set position - chair north of boating lake in Kalavan
 		npc.setPosition(118, 5);
-
-        // Set intital HP for Lon
 		npc.initHP(100);
-
-        // Description of Lon
 		npc.setDescription("I am Lon Jatham! I am an expert on Java. Don't talk to me unless you have your logbook.");
-
-        // Add to the zone
 		zone.add(npc);
 	}
 }

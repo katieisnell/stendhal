@@ -45,13 +45,8 @@ public class LonJathamNPCTest extends ZonePlayerAndNPCTestImpl {
 	@Test
 	public void testHiAndBye() {
 		
-		// Get Lon as a SpeakerNPC
 		final SpeakerNPC npc = getNPC("Lon Jatham");
-		
-		// Check he exists
 		assertNotNull(npc);
-		
-		// Get Lon's engine
 		final Engine en = npc.getEngine();
 
 		// Say hi and check response
@@ -68,10 +63,7 @@ public class LonJathamNPCTest extends ZonePlayerAndNPCTestImpl {
 	 */
 	@Test
 	public void testTalkToLon() {
-		// Lon as speaker NPC
 		final SpeakerNPC npc = getNPC("Lon Jatham");
-		
-		// Get Lon's engine
 		final Engine en = npc.getEngine();
 
 	    // Check hi
