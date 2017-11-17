@@ -16,6 +16,12 @@ import marauroa.common.game.IRPZone;
 import utilities.QuestHelper;
 import static org.hamcrest.CoreMatchers.is;
 
+/**
+ * Creates a chest with teddy and dice at coordinate (2,7) in Ross house upstairs.
+ *
+ * @author Khoi Nguyen (mbaxamn2)
+ * 
+ */
 public class UpstairsFloorExistTest {
 
     @BeforeClass
