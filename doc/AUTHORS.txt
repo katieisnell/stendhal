@@ -168,24 +168,31 @@ Authors of Stendhal are:
   - Diligent Dodo (aka Soniccuz)
   · Artist (mimic, dodo, suba diving concepts)
 - Tudor Ruxandu
+  · Implemented 'Bank statement scrolls' feature
   · Bugs fixer
   · Coder
 - Luke Sheldon
+  · Implemented 'Ados ross upstairs' feature
   · Bugs fixer
   · Coder
 - Katie Snell
+  · Implemented 'Lon jatham' feature
   · Bugs fixer
   · Coder
 - Poppy Reid
+  · Implemented 'Lon jatham' feature
   · Bugs fixer
   · Coder
 - Anthony Sikosa
+  · Implemented 'Ados ross upstairs' feature
   · Bugs fixer
   · Coder
 - Diana Pislaru
+  · Implemented 'Bank statement scrolls' feature
   · Bugs fixer
   · Coder
 - Khoi Minh Nguyen
+  · Implemented 'Ados ross upstairs' feature
   · Bugs fixer
   · Coder
 

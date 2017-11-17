@@ -1,6 +1,16 @@
 ﻿Changelog
 ---------
 
+1.28uom
+*world*
+- added a Lon Jatham NPC that, when the player is holding 
+  a logbook, he asks them if they want to do the Java quiz quest. 
+  If they complete the quest, they get XP and a certificate.
+- Added a bank scroll that when used returns a reminder about
+  the items in the bank chest associated it.
+- Added an upstairs room to the Ados Ross house and moved the teddy bear
+  upstairs, in a chest.
+
 1.27
 *bugfixes*
 - changed unhelpful zone description in Starkad response
