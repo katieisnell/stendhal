@@ -1,3 +1,15 @@
+/* $Id$ */
+/***************************************************************************
+ *                   (C) Copyright 2003-2010 - Stendhal                    *
+ ***************************************************************************
+ ***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 package games.stendhal.server.maps.quests;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -21,66 +33,67 @@ import utilities.QuestHelper;
 import games.stendhal.server.maps.kalavan.citygardens.LonJathamNPC;
 import games.stendhal.server.maps.kalavan.cottage.HouseKeeperNPC;
 
-// Test for Java quiz
+/**
+ * Tests for Java quiz quest.
+ *
+ * @author Poppy Reid
+ * @author Katie Snell
+ */
 public class JavaQuizTest {
+	private static final String LOGBOOK = "logbook";
 
-	// Quest slot is the java quest
 	private static String questSlot = "java_quest";
 
-	// A player to attempt the quest
-	private Player player = null;
-
-	// A speakerNPC, Lon Jatham, to give the quest to our player
-	private SpeakerNPC lon = null;
-
-	// The Granny NPC which deals with giving the user their logbook
-	private SpeakerNPC granny = null;
-
-	// The NPC's engine
-	private Engine lonEn = null;
-
-	// The granny's engine
-	private Engine grannyEn = null;
-
-	// The Java quiz test
 	public static final AbstractQuest quest = new JavaQuiz();
 
-	// Before the tests, set up the world and add Lon and the quest to it
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		
-		// Set up using quest helper
 		QuestHelper.setUpBeforeClass();
-
-		// Get a mock Stendhal world
 		MockStendlRPWorld.get();
 		
-        // Set up a testing zone
-		final StendhalRPZone zone = new StendhalRPZone("admin_test");
+		final StendhalRPZone zone = new StendhalRPZone("testzone");
 
-		// Put Lon and the housekeeper in the zone
 		new LonJathamNPC().configureZone(zone, null);
 		new HouseKeeperNPC().configureZone(zone, null);
 
-		// Add the quest to the world
 		quest.addToWorld();
+	} 
 
-	} // setUpBeforeClass
+	private Player player;
+	
+	private SpeakerNPC lon;
+	
+	private SpeakerNPC granny;
+	
+	private Engine lonEn = null;
 
-	// Set up the player before the tests
+	private Engine grannyEn = null;
+	
 	@Before
 	public void setUp() {
-		// Create a testing player		
-		player = PlayerTestHelper.createPlayer("player");
-	} // setUp
-
-	// Test the quest if the user has their logbook
+		player = PlayerTestHelper.createPlayer("player");		
+	} 
+	
+	/* Variables needed for every test are declared below */ 
+	
+    String question = null;
+    
+    boolean isQ1 = false;
+    
+    boolean isQ2 = false;
+    
+    boolean isQ3 = false;
+    
+    boolean isQ = false;
+    
+    
+	/*
+	 *  Test the quest if the player fails the test and then passes it.
+	 */
 	@Test
-	public void testQuestWithLogbook() {
+	public void testPlayerFailsThenPassesWithLogbook() {
 		// Check slot is correct
 		assertTrue(quest.getSlotName()==questSlot);
-
-		/* TEST CASE 1: THE PLAYER FAILS THE TEST AND THEN PASSES IT.*/
 
         // Quest name
 		assertEquals(quest.getName(), "JavaQuiz");
@@ -108,10 +121,10 @@ public class JavaQuizTest {
 
 		// Request logbook from Granny
 		grannyEn.step(player, "hello");
-		grannyEn.step(player, "logbook");
+		grannyEn.step(player, LOGBOOK);
 
 		// Make sure the player has a logbook
-		assertTrue(player.isEquipped("logbook"));
+		assertTrue(player.isEquipped(LOGBOOK));
 
 		// Player starts by saying hi to Lon
 		lonEn.step(player, "hi");
@@ -229,8 +242,13 @@ public class JavaQuizTest {
         // End conversation
 	    lonEn.step(player, "bye");
 	    
-		/* TEST CASE 2: THE PLAYER PASSES THE TEST AND TRIES TO DO IT AGAIN.*/
-
+	}
+	
+	/*
+	 *  Test the quest if the player passes the test and tries to do it again.
+	 */
+	@Test
+	public void testPlayerPassesThenTriesAgainWithLogbook() {
 	    // Get Lon and Granny again
 		lon = SingletonRepository.getNPCList().get("Lon Jatham");
 		granny = SingletonRepository.getNPCList().get("Granny Graham");
@@ -249,10 +267,10 @@ public class JavaQuizTest {
 
 		// Request logbook from Granny
 		grannyEn.step(player, "hello");
-		grannyEn.step(player, "logbook");
+		grannyEn.step(player, LOGBOOK);
 
 		// Make sure the player has a logbook
-		assertTrue(player.isEquipped("logbook"));
+		assertTrue(player.isEquipped(LOGBOOK));
 
 		// Say hi to Lon
 		lonEn.step(player, "hi");
@@ -320,7 +338,7 @@ public class JavaQuizTest {
 	    lonEn.step(player, "hi");
 
 	    // Make sure Lon can see that the user has their logbook
-	    assertEquals("Hello my favourite student! Thank you for always keeping your logbook on you and getting 100% in my test!", getReply(lon));
+	    assertEquals("Hello my favourite student! Thank you for always keeping your logbook on you and getting 100% in my #test!", getReply(lon));
 
 	    // Ask to do again
 	    lonEn.step(player, "test");
@@ -328,17 +346,35 @@ public class JavaQuizTest {
 
 	    // End conversation
 	    lonEn.step(player, "bye");
-
-		/* TEST CASE 3: THE PLAYER DOESN'T WANT TO TAKE THE TEST.*/
-
+	    
+	}
+	
+	/* 
+	 * Test Lon's response if the player doesn't want to take the test.
+	 */
+	@Test
+	public void testPlayerDoesntWantToTakeTestWithLogbook() {
 	    // Get Lon again
 		lon = SingletonRepository.getNPCList().get("Lon Jatham");
 
-		// Get Lon's engine
+
+		granny = SingletonRepository.getNPCList().get("Granny Graham");
+
+		// The engine is Lon's engine
 		lonEn = lon.getEngine();
+
+		// Get the Granny's engine
+		grannyEn = granny.getEngine();
 
 		// Set quest as null
 		player.setQuest(questSlot, null);
+		
+		// Request logbook from Granny
+		grannyEn.step(player, "hello");
+		grannyEn.step(player, LOGBOOK);
+
+		// Make sure the player has a logbook
+		assertTrue(player.isEquipped(LOGBOOK));
 
 		// Say hi
 		lonEn.step(player, "hi");
@@ -357,13 +393,13 @@ public class JavaQuizTest {
 		// Say bye to Lon
 		lonEn.step(player, "bye");
 
-	} // test
+	} 
 
-	// Test that Lon does not speak to the user if they don't have a logbook
+	/*
+	 * Test what Lon's response is if the player speaks to him for the first time and without a logbook.
+	 */
 	@Test
-	public void testQuestWithoutLogbook() {
-		/* TEST CASE 1: THE PLAYER TRIES TO TALK TO LON FOR THE FIRST TIME.*/
-
+	public void testTalkingToLonForFirstTimeWithoutLogbook() {
 		// The NPC is Lon Jatham
 		lon = SingletonRepository.getNPCList().get("Lon Jatham");
 
@@ -371,7 +407,7 @@ public class JavaQuizTest {
 		lonEn = lon.getEngine();
 		
 		// Make sure the player doesn't have a logbook
-		assertFalse(player.isEquipped("logbook"));
+		assertFalse(player.isEquipped(LOGBOOK));
 
 		// Speak to Lon for the first time
 		lonEn.step(player, "hello");
@@ -381,8 +417,18 @@ public class JavaQuizTest {
 
 		// Make sure Lon becomes idle (so he will not speak to the user anymore)
 		assertEquals(ConversationStates.IDLE, lonEn.getCurrentState());
-		
-		/* TEST CASE 2: THE PLAYER STARTS THE QUEST BUT THEN TRIES TO TALK TO LON WITHOUT A LOGBOOK.*/
+	}
+	
+	/*
+	 * Test what Lon's response is if the player speaks to him whilst the quest is active but without a logbook.
+	 */	
+	@Test
+	public void testTalkingToLonWithActiveQuestWithoutLogbook() {		
+		// The NPC is Lon Jatham
+		lon = SingletonRepository.getNPCList().get("Lon Jatham");
+
+		// The engine is Lon's engine
+		lonEn = lon.getEngine();
 		
 		// Check slot is correct
 		assertTrue(quest.getSlotName()==questSlot);
@@ -397,7 +443,10 @@ public class JavaQuizTest {
 		player.setQuest(questSlot, "Do you attend all my lectures?");
 		
 		// Make sure the player doesn't have a logbook
-		assertFalse(player.isEquipped("logbook"));
+		assertFalse(player.isEquipped(LOGBOOK));
+		
+		// Make sure Lon starts off idle
+		assertEquals(ConversationStates.IDLE, lonEn.getCurrentState());	
 
 		// Speak to Lon 
 		lonEn.step(player, "hello");
@@ -408,14 +457,27 @@ public class JavaQuizTest {
 		// Make sure Lon becomes idle (so he will not speak to the user anymore)
 		assertEquals(ConversationStates.IDLE, lonEn.getCurrentState());		
 		
-		
-		/* TEST CASE 3: THE PLAYER HAS COMPLETED THE QUEST BUT THEN TRIES TO TALK TO LON WITHOUT A LOGBOOK.*/
+	}
+	
+	/*
+	 * Test what Lon's response is if the player speaks to him for having completed the quest but without a logbook.
+	 */	
+	@Test
+	public void testTalkingToLonWithCompletedQuestWithoutLogbook() {		
+		// The NPC is Lon Jatham
+		lon = SingletonRepository.getNPCList().get("Lon Jatham");
+
+		// The engine is Lon's engine
+		lonEn = lon.getEngine();
 		
 		// Set the quest to be complete
 		player.setQuest(questSlot, "done");
 		
 		// Make sure the player doesn't have a logbook
-		assertFalse(player.isEquipped("logbook"));
+		assertFalse(player.isEquipped(LOGBOOK));
+		
+		// Make sure Lon starts off idle
+		assertEquals(ConversationStates.IDLE, lonEn.getCurrentState());	
 
 		// Speak to Lon 
 		lonEn.step(player, "hello");
@@ -426,5 +488,5 @@ public class JavaQuizTest {
 		// Make sure Lon becomes idle (so he will not speak to the user anymore)
 		assertEquals(ConversationStates.IDLE, lonEn.getCurrentState());
 
-	} // test
+	} 
 }

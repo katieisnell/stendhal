@@ -1,17 +1,17 @@
 /* $Id$ */
 package games.stendhal.server.maps.kalavan.citygardens;
 
-//import java.util.Arrays;
 import java.util.Map;
 
 import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
-//import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
-//import games.stendhal.server.entity.npc.condition.NotCondition;
-//import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 
-// Class for NPC Lon Jathan
+/**
+ * Lon Jatham NPC.
+ *
+ * @author Poppy Reid
+ */
 public class LonJathamNPC implements ZoneConfigurator {
 
 	@Override
@@ -20,9 +20,10 @@ public class LonJathamNPC implements ZoneConfigurator {
 	}
 
 
-    // Build Lon Jatham as a Speaker NPC
+    /*
+     *  Build Lon Jatham as a Speaker NPC
+     */
 	private void buildNPC(final StendhalRPZone zone) {
-
         // Create a speaker NPC
 		final SpeakerNPC npc = new SpeakerNPC("Lon Jatham") {
 

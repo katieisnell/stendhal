@@ -23,9 +23,7 @@ import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.condition.AndCondition;
-//import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
 import games.stendhal.server.entity.npc.condition.NotCondition;
-//import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestActiveCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
@@ -34,12 +32,18 @@ import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.Region;
 
 
-// Java quest is an abstract quest
+/**
+ * Java Quiz quest.
+ *
+ * @author Poppy Reid
+ * @author Katie Snell
+ */
 public class JavaQuiz extends AbstractQuest {
-    // Quest slot name
 	private static final String QUEST_SLOT = "java_quest";
 
-	// The questions and answers
+	/*
+	 *  The questions and answers.
+	 */
 	private static Map<String, String> answers = new HashMap<String, String>();
 	static {
 			answers.put("Do you attend all my lectures?", "yes");
@@ -49,13 +53,11 @@ public class JavaQuiz extends AbstractQuest {
 							"Infinity");
 	}
 
-        // Put in slot name
 	@Override
 	public String getSlotName() {
 		return QUEST_SLOT;
 	}
 	
-	// get history of player and quest
 	@Override
 	public List<String> getHistory(final Player player) {
 		final List<String> res = new ArrayList<String>();
@@ -69,11 +71,13 @@ public class JavaQuiz extends AbstractQuest {
 		return res;
 	}
 
-	// See if player can get their certificate and XP from answering a question.
+	/*
+	 * See if player can get their certificate and XP from answering a question.
+	 */
 	private void createCertificate() {
 		final SpeakerNPC lon = npcs.get("Lon Jatham");
 		
-		// The following are all the combinations of greetings Lon can give
+		// If the player does not have their logbook and the quest has not been started, Lon will not speak.
 		lon.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(						
@@ -84,6 +88,7 @@ public class JavaQuiz extends AbstractQuest {
 				null				
 				);
 		
+		// If the player does not have their logbook and the quest is active, Lon will not speak.
 		lon.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(						
@@ -94,6 +99,7 @@ public class JavaQuiz extends AbstractQuest {
 				null				
 				);
 		
+		// If the player does not have their logbook and the quest is completed, Lon will not speak.
 		lon.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES,
 				new AndCondition(						
@@ -104,6 +110,7 @@ public class JavaQuiz extends AbstractQuest {
 				null				
 				);		
 		
+		// If the player has their logbook but has not started the quest yet.
 		lon.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES, 
 				new AndCondition(						
@@ -114,6 +121,7 @@ public class JavaQuiz extends AbstractQuest {
 				null				
 				);
 		
+		// If the player has their logbook and has started the quest.
 		lon.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES, 
 				new AndCondition(						
@@ -124,13 +132,14 @@ public class JavaQuiz extends AbstractQuest {
 				null	
 				);
 		
+		// If the player has their logbook and has already completed the quest.
 		lon.add(ConversationStates.IDLE, 
 				ConversationPhrases.GREETING_MESSAGES, 
 				new AndCondition(						
 						new PlayerHasItemWithHimCondition("logbook"),
 						new QuestCompletedCondition(QUEST_SLOT)),
 				ConversationStates.ATTENDING,
-				"Hello my favourite student! Thank you for always keeping your logbook on you and getting 100% in my test!",
+				"Hello my favourite student! Thank you for always keeping your logbook on you and getting 100% in my #test!",
 				null				
 				);
 		
@@ -178,9 +187,7 @@ public class JavaQuiz extends AbstractQuest {
 					npc.say("Very well. Here is your question. " + name);
 					player.setQuest(QUEST_SLOT, name);
 				}
-			});
-
-	
+			});	
 
 		lon.addMatching(ConversationStates.QUESTION_1, Expression.JOKER, new JokerExprMatcher(), null,
 			ConversationStates.ATTENDING, null,
@@ -212,7 +219,6 @@ public class JavaQuiz extends AbstractQuest {
 			});
 	}
 
-	// Add the quest to the world
 	@Override
 	public void addToWorld() {
 		fillQuestInfo(
@@ -222,20 +228,17 @@ public class JavaQuiz extends AbstractQuest {
 		createCertificate();
 	}
 	
-	// Quest name
 	@Override
 	public String getName() {
 		return "JavaQuiz";
 	}
 
-	// Region name
 	@Override
 	public String getRegion() {
 		return Region.KALAVAN;
 	}
-	@Override
 	
-	// NPC name
+	@Override
 	public String getNPCName() {
 		return "Lon Jatham";
 	}

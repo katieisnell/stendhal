@@ -14,28 +14,34 @@ import games.stendhal.server.entity.npc.fsm.Engine;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
 
-// Test for Lon Jatham NPC
+/**
+ * Tests for Lon Jatham NPC.
+ *
+ * @author Poppy Reid
+ * @author Katie Snell
+ */
 public class LonJathamNPCTest extends ZonePlayerAndNPCTestImpl {
-
-	// The zone where Lon is
 	private static final String ZONE_NAME = "0_kalavan_city_gardens";
 
-	// Set up the zone before doing the test
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		QuestHelper.setUpBeforeClass();
 
 		setupZone(ZONE_NAME);
-	} // setUpBefore class
-
-	// Get Lon in his zone
+	}
+	
+	/*
+	 * Get Lon in his zone
+	 */
 	public LonJathamNPCTest() {
 		setNpcNames("Lon Jatham");
 		setZoneForPlayer(ZONE_NAME);
 		addZoneConfigurator(new LonJathamNPC(), ZONE_NAME);
-	} // LonJathamNPCTest
+	} 
 	
-	// Test interactions with Lon - hi and bye
+	/*
+	 * Test greeting and goodbye interactions with Lon. 
+	 */
 	@Test
 	public void testHiAndBye() {
 		
@@ -55,9 +61,11 @@ public class LonJathamNPCTest extends ZonePlayerAndNPCTestImpl {
 		// Say bye and check response
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Gooooodbye! Study harder!!!", getReply(npc));
-	} // testHiAndBye
+	} 
 
-	// Test interactions with Lon - talking
+	/* 
+	 * Test general interactions with Lon.
+	 */
 	@Test
 	public void testTalkToLon() {
 		// Lon as speaker NPC
@@ -94,5 +102,5 @@ public class LonJathamNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Gooooodbye! Study harder!!!", getReply(npc));
 		
-	} // testTalkToLon
-} // LonJathamNPCTest
+	} 
+} 
