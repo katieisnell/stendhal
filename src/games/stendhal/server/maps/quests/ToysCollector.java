@@ -87,6 +87,7 @@ public class ToysCollector extends AbstractQuest implements
 				false);
 		setupAbstractQuest();
 		specialStuff();
+		helpFromMrRoss();
 	}
 
 	private void specialStuff() {
@@ -97,6 +98,19 @@ public class ToysCollector extends AbstractQuest implements
 				ConversationStates.IDLE,
 				"Then you should go away before I get in trouble for talking to you. Bye.",
 				null);
+	}
+	
+	//Get Mr Ross to give a hint to where the toys are stored
+	private void helpFromMrRoss() {
+		final SpeakerNPC ross = npcs.get("Mr Ross");
+		ross.add(
+			ConversationStates.ATTENDING,
+			Arrays.asList("toy", "toys", "teddy"),
+			new QuestNotCompletedCondition(QUEST_SLOT),
+			ConversationStates.IDLE,
+			"I see that you're looking for some toys. " +
+		    "Why don't you go upstairs and help yourself?",
+			null);
 	}
 
 	@Override

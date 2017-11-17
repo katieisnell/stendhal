@@ -3125,17 +3125,31 @@ My fee:
   </zone>
   
   <zone name="int_ados_ross_house" file="interiors/ados/ross_house.tmx">
-    <!-- Portals -->
+    <!-- Configurator -->
     <configurator class-name="games.stendhal.server.maps.ados.rosshouse.LittleGirlNPC" />    
     <configurator class-name="games.stendhal.server.maps.ados.rosshouse.FatherNPC" />
-    <configurator class-name="games.stendhal.server.maps.ados.rosshouse.ItemsOnTable" />
-    
+
     <!-- Portals -->
     <portal x="7" y="14" ref="entrance">
       <destination zone="0_ados_city" ref="ross_house_entrance" />
     </portal>
-    
+
+    <portal x="1" y="12" ref="down">
+      <destination zone="int_ados_ross_house_1" ref="up" />
+    </portal>
+
   </zone>
+
+  <zone name="int_ados_ross_house_1" file="interiors/ados/ross_house_1.tmx"> 
+    <!-- Configurator -->
+    <configurator class-name="games.stendhal.server.maps.ados.rosshouse.ItemsInChest" />
+
+    <!-- Portals -->
+    <portal x="1" y="12" ref="up">
+      <destination zone="int_ados_ross_house" ref="down" />
+    </portal>
+
+  </zone> 
   
   <zone name="int_ados_house_50" file="interiors/ados/house_50.tmx" accessible="false">
     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
