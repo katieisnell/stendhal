@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.server.maps.semos.bank;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import games.stendhal.common.Direction;
@@ -24,8 +26,12 @@ import games.stendhal.server.entity.npc.ChatAction;
 import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.EventRaiser;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipBankScrollAction;
 import games.stendhal.server.entity.npc.action.MultipleActions;
 import games.stendhal.server.entity.npc.action.PlaySoundAction;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 import games.stendhal.server.entity.npc.condition.QuestCompletedCondition;
 import games.stendhal.server.entity.npc.condition.QuestNotCompletedCondition;
 import games.stendhal.server.entity.player.Player;
@@ -69,7 +75,25 @@ public class CustomerAdvisorNPC implements ZoneConfigurator {
 						new MultipleActions(new PlaySoundAction("keys-1", true), new VaultChatAction()));
 
 				add(ConversationStates.ANY, "vault", new QuestNotCompletedCondition("armor_dagobert"), ConversationStates.ATTENDING, "Perhaps you could do a #favour for me, and then I will tell you more about the private banking vaults.", null);
+				
+				final List<ChatAction> mark_bank_scroll = new LinkedList<ChatAction>();
+ 				mark_bank_scroll.add(new DropItemAction("empty scroll"));
+ 				mark_bank_scroll.add(new EquipBankScrollAction("bank"));
 
+ 				add(ConversationStates.ATTENDING, 
+ 					"mark", 
+ 					new PlayerHasItemWithHimCondition("empty scroll"),
+ 					ConversationStates.ATTENDING, 
+ 					"Here you go!", 
+ 					new MultipleActions(mark_bank_scroll));
+ 				
+ 				add(ConversationStates.ATTENDING, 
+ 	 	 			"mark", 
+ 	 	 			new NotCondition(new PlayerHasItemWithHimCondition("empty scroll")),
+ 	 	 			ConversationStates.ATTENDING, 
+ 	 	 			"You need an empty scroll so I can mark it!", 
+ 	 	 			null);
+ 				
 				// remaining behaviour defined in games.stendhal.server.maps.quests.ArmorForDagobert
 			}
 

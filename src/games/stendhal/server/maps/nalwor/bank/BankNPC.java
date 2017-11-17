@@ -21,7 +21,14 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+import games.stendhal.server.entity.npc.ChatAction;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.DropItemAction;
+import games.stendhal.server.entity.npc.action.EquipBankScrollAction;
+import games.stendhal.server.entity.npc.action.MultipleActions;
+import games.stendhal.server.entity.npc.condition.NotCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
 
 /**
  * Builds the nalwor bank npcs.
@@ -64,6 +71,7 @@ public class BankNPC implements ZoneConfigurator {
 				addHelp("That room has two chests owned by this bank and two owned by Semos bank.");
 				addGoodbye("Goodbye, young human.");
 				//remaining behaviour defined in Take Gold for Grafindle quest
+				
 			}
 		};
 
@@ -101,6 +109,24 @@ public class BankNPC implements ZoneConfigurator {
 				addJob("I help customers of the bank, elves and even humans.");
 				addQuest("I don't need anything, thank you.");
 				addGoodbye("Goodbye, thank you for your time.");
+				
+				final List<ChatAction> mark_bank_scroll = new LinkedList<ChatAction>();
+ 				mark_bank_scroll.add(new DropItemAction("empty scroll"));
+ 				mark_bank_scroll.add(new EquipBankScrollAction("bank_nalwor"));
+
+ 				add(ConversationStates.ATTENDING, 
+ 					"mark", 
+ 					new PlayerHasItemWithHimCondition("empty scroll"),
+ 					ConversationStates.ATTENDING, 
+ 					"Here you go!", 
+ 					new MultipleActions(mark_bank_scroll));
+ 				
+ 				add(ConversationStates.ATTENDING, 
+ 	 				"mark", 
+ 	 				new NotCondition(new PlayerHasItemWithHimCondition("empty scroll")),
+ 	 				ConversationStates.ATTENDING, 
+ 	 				"You need an empty scroll so I can mark it!", 
+ 	 				null);
 			}
 		};
 
