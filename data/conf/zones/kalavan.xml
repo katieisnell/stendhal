@@ -2050,6 +2050,7 @@
     <portal x="9" y="12" ref="cottage_2_entrance">
       <destination zone="int_kalavan_cottage_2" ref="entrance" />
     </portal>
+    <configurator class-name="games.stendhal.server.maps.kalavan.citygardens.LonJathamNPC" />
   </zone>
 
   <zone name="int_kalavan_cottage_2" file="interiors/kalavan/cottage_2.tmx">

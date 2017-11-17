@@ -37,6 +37,8 @@ public class HouseKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 	private static final String ZONE_NAME = "0_kalavan_city_gardens";
 
 	private static final String QUEST_SLOT = "granny_brew_tea";
+	
+	private static final String LOGBOOK = "logbook";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -102,7 +104,7 @@ public class HouseKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Don't you know the beekeeper of Fado Forest?", getReply(npc));
 
 		assertTrue(en.step(player, "jar of honey"));
-		assertEquals("Don't you know the beekeeper of Fado Forest?", getReply(npc));
+		assertEquals("Don't you know the beekeeper of Fado Forest?", getReply(npc));	
 
 		assertFalse(player.isEquipped("tea"));
 
@@ -180,6 +182,28 @@ public class HouseKeeperNPCTest extends ZonePlayerAndNPCTestImpl {
 
 		assertTrue(en.step(player, "bye"));
 		assertEquals("Bye now.", getReply(npc));
+	}
+	
+	/**
+	 * Tests for logbook.
+	 */
+	@Test
+	public void testLogbook() {
+		final SpeakerNPC npc = getNPC("Granny Graham");
+		final Engine en = npc.getEngine();
+		
+		assertTrue(en.step(player, "hi"));
+		assertEquals("Hello, dear.", getReply(npc));
+		
+		assertTrue(en.step(player, LOGBOOK));
+		assertEquals("Ah... Lon must have left the logbooks here when he rushed out... Here you go, please take one!", getReply(npc));
+		assertTrue(player.isEquipped(LOGBOOK));
+		
+		// Check that the player can only get one logbook if they already hold one.
+		assertTrue(en.step(player, LOGBOOK));
+		assertEquals("Oh... But I just gave you a logbook? Surely you only need one...", getReply(npc));
+		assertEquals(1, player.getNumberOfEquipped(LOGBOOK));
+		
 	}
 
 }

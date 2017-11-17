@@ -12,6 +12,7 @@
  ***************************************************************************/
 package games.stendhal.server.maps.kalavan.cottage;
 
+//import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -22,9 +23,18 @@ import games.stendhal.server.core.config.ZoneConfigurator;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.core.pathfinder.FixedPath;
 import games.stendhal.server.core.pathfinder.Node;
+//import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.ConversationStates;
 import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.action.EquipItemAction;
+//import games.stendhal.server.entity.npc.action.MultipleActions;
+//import games.stendhal.server.entity.npc.action.SetQuestAction;
 import games.stendhal.server.entity.npc.behaviour.adder.ProducerAdder;
 import games.stendhal.server.entity.npc.behaviour.impl.ProducerBehaviour;
+//import games.stendhal.server.entity.npc.condition.AndCondition;
+//import games.stendhal.server.entity.npc.condition.GreetingMatchesNameCondition;
+import games.stendhal.server.entity.npc.condition.PlayerHasItemWithHimCondition;
+//import games.stendhal.server.entity.npc.condition.QuestInStateCondition;
 
 /**
  * NPC who makes tea.
@@ -79,6 +89,24 @@ public class HouseKeeperNPC implements ZoneConfigurator {
 				        "Don't you know the beekeeper of Fado Forest?");
 				addReply("tea",
 				        "It's the very best drink of all. I sweeten mine with #honey. Just ask if you'd like a #brew.");
+				
+				// Gives the user a new logbook if they do not have one
+				add(ConversationStates.ATTENDING, 
+					"logbook", 
+					null, 
+					ConversationStates.ATTENDING,
+					"Ah... Lon must have left the logbooks here when he rushed out... Here you go, please take one!",
+					new EquipItemAction("logbook", 1, true) );
+				
+				// Make sure the player doesn't get another one if they are holding one
+				add(ConversationStates.ATTENDING, 
+						"logbook", 
+						new PlayerHasItemWithHimCondition("logbook"), 
+						ConversationStates.ATTENDING,
+						"Oh... But I just gave you a logbook? Surely you only need one...",
+						null);
+				
+				
 			}
 		};
 		npc.setDescription("You see old Granny Graham, shuffling around her kitchen and muttering to herself.");

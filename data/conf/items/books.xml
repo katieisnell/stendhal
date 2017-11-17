@@ -32,4 +32,21 @@
       <slot name="trade"/>
     </equipable>
   </item>
+  
+    <item name="logbook">
+    <type class="book" subclass="book_blue" tileid="-1"/>
+    <description>Bring this logbook with you whenever you talk to Lon Jatham, otherwise beware of his reaction...</description>
+    <implementation class-name="games.stendhal.server.entity.item.Item"/>
+    <attributes>
+    </attributes>
+    <weight value="0.01"/>
+    <value value="1"/>
+    <equipable>
+      <slot name="ground"/>
+      <slot name="content"/>
+      <slot name="bag"/>
+      <slot name="trade"/>
+    </equipable>
+  </item>
+  
 </items>
