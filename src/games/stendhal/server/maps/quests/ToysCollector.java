@@ -109,7 +109,7 @@ public class ToysCollector extends AbstractQuest implements
 			new QuestNotCompletedCondition(QUEST_SLOT),
 			ConversationStates.IDLE,
 			"I see that you're looking for some toys. " +
-		    "Why don't you go upstairs and help yourself?",
+		     "Why don't you go upstairs and help yourself?",
 			null);
 	}
 
