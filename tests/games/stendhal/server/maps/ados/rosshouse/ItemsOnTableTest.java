@@ -14,6 +14,10 @@ import games.stendhal.server.entity.player.Player;
 import utilities.QuestHelper;
 import utilities.ZoneAndPlayerTestImpl;
 
+/**
+ * Tests for the bottom floor of the Ross house.
+ * @author Anthony Sikosa
+ */
 public class ItemsOnTableTest extends ZoneAndPlayerTestImpl {
 
 	private Player player;
@@ -36,7 +40,10 @@ public class ItemsOnTableTest extends ZoneAndPlayerTestImpl {
 	public ItemsOnTableTest() {
 		super("int_ados_ross_house");
 	}
-	
+	/**
+	 *  Tests whether on the bottom floor of the Ross house there is a portal which
+	 *  leads upstairs.
+	 */
 	@Test
 	public void shouldHavePortalToUpstairs() {	
 		// check if portal is in the correct place

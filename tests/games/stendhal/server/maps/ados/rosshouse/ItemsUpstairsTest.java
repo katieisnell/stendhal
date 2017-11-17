@@ -19,6 +19,10 @@ import utilities.QuestHelper;
 import utilities.ZoneAndPlayerTestImpl;
 import static org.hamcrest.CoreMatchers.is;
 
+/**
+ * Tests for the upper floor of the Ross house.
+ * @author Anthony Sikosa
+ */
 public class ItemsUpstairsTest extends ZoneAndPlayerTestImpl {
 
 	private Player player;
@@ -42,6 +46,10 @@ public class ItemsUpstairsTest extends ZoneAndPlayerTestImpl {
 		super("int_ados_ross_house_1");
 	}
 	
+	/**
+	 *  Tests whether the upper floor has an chest in it which contains
+	 *  a teddy.
+	 */
 	@Test
 	public void shouldHaveChestContainingTeddy() {
 		Chest chest = (Chest)zone.getEntityAt(2, 7);
@@ -57,7 +65,10 @@ public class ItemsUpstairsTest extends ZoneAndPlayerTestImpl {
 		Item firstItem = (Item) chestIt.next();
 		assertEquals(firstItem.getName(), "teddy");
 	}
-	
+	/** 
+	 *  Tests whether there is a portal which leads to downstairs on
+	 *  the upstairs floor.
+	 */
 	@Test
 	public void shouldHavePortalToDownstairs() {	
 		// check if portal exists and is in the correct place
