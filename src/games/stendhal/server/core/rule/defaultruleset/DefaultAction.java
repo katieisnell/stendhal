@@ -17,6 +17,9 @@ public class DefaultAction {
 	/** Action type. */
 	private String type;
 	
+	private int minParameters;
+	
+	private int maxParameters;
 	
 	/** Creates a default action. */
 	public DefaultAction(final String clazz, final String name, final String type) {
@@ -25,6 +28,19 @@ public class DefaultAction {
 		this.type = type;
 	}
 	
+	public int getMinParameters() {
+		return minParameters;
+	}
 	
-
+	public int getMaxParameters() {
+		return maxParameters;
+	}
+	
+	public void setMinParameters(String minParameters) {
+		this.minParameters = Integer.parseInt(minParameters);
+	}
+	
+	public void setMaxParameters(String maxParameters) {
+		this.maxParameters = Integer.parseInt(maxParameters);
+	}	
 }
