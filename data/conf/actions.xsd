@@ -15,7 +15,7 @@
 		<sequence>
 			<element name="implementation" type="Q3:Implementation" />
 			<element name="type" type="Q3:Type" />
-			<element name="parameters" type="Q3:NumberOfParameters" />
+			<element name="number_of_parameters" type="Q3:NumberOfParameters" />
 		</sequence>
 		<attribute name="name" type="string" use="required"/>
 	</complexType>
