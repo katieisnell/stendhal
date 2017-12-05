@@ -10,7 +10,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-/*package games.stendhal.server.core.config;
+package games.stendhal.client.core.config;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -120,4 +120,4 @@ public final class ActionXMLLoader extends DefaultHandler {
 		}
 	}
 
-}*/
+}

@@ -20,7 +20,7 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.server.core.config.ActionGroupsXMLLoader;
+import games.stendhal.client.core.config.ActionGroupsXMLLoader;
 import games.stendhal.server.core.rule.defaultruleset.DefaultAction;
 
 
