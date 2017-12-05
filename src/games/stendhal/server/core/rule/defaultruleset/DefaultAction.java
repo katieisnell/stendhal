@@ -2,45 +2,86 @@ package games.stendhal.server.core.rule.defaultruleset;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.client.actions.SlashAction;
+import marauroa.common.game.RPAction;
 
-public class DefaultAction {
+
+public class DefaultAction implements SlashAction{
 	
 	/** the logger instance. */
 	private static final Logger logger = Logger.getLogger(DefaultAction.class);
 	
-	/** Action class. */
-	private String clazz;
-
-	/** Action name. */
-	private String name;
-	
 	/** Action type. */
 	private String type;
 	
+	/** Parameters typed by the user. (won't be more than 30 parameters) */
+	private String[] paramsKeys = new String[30];
+	
+	/** Remaining text typed by the user. */
+	private String remainderKey;
+	
+	/** Minimum number of parameters required for this action */
 	private int minParameters;
 	
+	/** Maximum number of parameters required for this action */
 	private int maxParameters;
 	
 	/** Creates a default action. */
-	public DefaultAction(final String clazz, final String name, final String type) {
-		this.clazz = clazz;
-		this.name = name;
+	public DefaultAction(final String type) {
 		this.type = type;
 	}
 	
-	public int getMinParameters() {
-		return minParameters;
+	@Override
+	public boolean execute(String[] params, String remainder) {
+		final RPAction action = new RPAction();
+		
+		// all actions have a type
+		action.put("type", this.type);
+		
+		// set the action parameters (if there are any parameters)
+		if (params.length != 0) {
+			for(int paramIndex = 0; paramIndex < params.length; ++paramIndex) {
+				action.put(paramsKeys[paramIndex], params[paramIndex]);
+			}
+		}
+		
+		// set the action remainder (if there is a remainder)
+		if (this.remainderKey != null) {
+			action.put(this.remainderKey, remainder);
+		}
+		
+		ClientSingletonRepository.getClientFramework().send(action);
+		return true;
 	}
 	
-	public int getMaxParameters() {
-		return maxParameters;
+	public void addParamKeyAtIndex(int index, String paramKey) {
+		this.paramsKeys[index] = paramKey;
 	}
 	
-	public void setMinParameters(String minParameters) {
+	public void addRemainderKey(String remainderKey) {
+		this.remainderKey = remainderKey;
+	}
+	
+	public void setMinimumParameters(String minParameters) {
 		this.minParameters = Integer.parseInt(minParameters);
 	}
 	
-	public void setMaxParameters(String maxParameters) {
+	public void setMaximumParameters(String maxParameters) {
 		this.maxParameters = Integer.parseInt(maxParameters);
+	}
+
+	@Override
+	public int getMaximumParameters() {
+		return maxParameters;
+	}
+
+	@Override
+	public int getMinimumParameters() {
+		return minParameters;
 	}	
+	
+	public String getType() {
+		return this.type;
+	}
 }

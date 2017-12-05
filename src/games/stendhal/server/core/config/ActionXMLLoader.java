@@ -103,19 +103,19 @@ public final class ActionXMLLoader extends DefaultHandler {
 	public void endElement(String uri, String localName, String qName)
 			throws SAXException {
 		if(qName.equals("action")) {
-			DefaultAction action = new DefaultAction(implementation, type, type);
+			DefaultAction action = new DefaultAction(type);
 			
 			
 			if(parameterValues.containsKey("minimum")) {
-				action.setMinParameters(parameterValues.get("value"));
+				action.setMinimumParameters(parameterValues.get("minimum"));
 			}
 			if(parameterValues.containsKey("maximum")) {
-				action.setMaxParameters(parameterValues.get("value"));
+				action.setMaximumParameters(parameterValues.get("maximum"));
 			}
 			
 			loadedActions.add(action);
 		}
-		if(qName.equals("attributes")) {
+		if(qName.equals("number_of_parameters")) {
 			parameterTagFound = false;
 		}
 	}
