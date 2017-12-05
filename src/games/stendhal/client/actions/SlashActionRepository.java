@@ -43,6 +43,7 @@ public class SlashActionRepository {
 		final SlashAction supporta = new SupportAnswerAction();
 		final SlashAction who = new WhoAction();
 		final SlashAction help = new HelpAction();
+
 		final GroupMessageAction groupMessage = new GroupMessageAction();
 		
 		// build table of DefaultActions
@@ -52,7 +53,7 @@ public class SlashActionRepository {
 			for (DefaultAction defaultAction : loadedDefaultActions) {
 				// check if action is already in the table
 				if(actions.containsKey(defaultAction.getType())) {
-					LOGGER.warn("Repeated action name: "+ defaultAction.getType());
+					LOGGER.warn("Repeated action name: " + defaultAction.getType());
 				}
 				// add the current action to the table
 				actions.put(defaultAction.getType(), defaultAction);
@@ -90,21 +91,45 @@ public class SlashActionRepository {
 
 		actions.put("gag", new GagAction());
 		actions.put("gmhelp", new GMHelpAction());
-		actions.put("group", new GroupManagementAction(groupMessage));
-		actions.put("groupmessage", groupMessage);
-		actions.put("grumpy", new GrumpyAction());
 
+		// actions.put("group", new GroupManagementAction(groupMessage));
+        DefaultAction groupManagementAction = (DefaultAction) actions.get("group_management");
+        groupManagementAction.addParamKeyAtIndex(0, "action");
+        groupManagementAction.addRemainderKey("params");
+        actions.put("group", groupManagementAction);
+
+		// actions.put("groupmessage", groupMessage);
+        DefaultAction groupMessageAction = (DefaultAction) actions.get("group_message");
+        groupMessageAction.addRemainderKey("text");
+        actions.put("groupmessage", groupMessageAction);
+
+        //actions.put("grumpy", new GrumpyAction());
+        DefaultAction grumpyAction = (DefaultAction) actions.get("grumpy");
+        grumpyAction.addRemainderKey("reason");
+        actions.put("grumpy", grumpyAction);
+        
 		actions.put("help", help);
 
 		actions.put("ignore", new IgnoreAction());
-		actions.put("inspect", new InspectAction());
-		
+
+		//actions.put("inspect", new InspectAction());
+	    DefaultAction inspectAction = (DefaultAction) actions.get("inspect");
+	    inspectAction.addParamKeyAtIndex(0, "target");
+	    actions.put("inspect", inspectAction);
+	    
 		// actions that don't have any parameters or remainder don't have to be updated in the table
 		// actions.put("invisible", new InvisibleAction());
-
-		actions.put("jail", new JailAction());
-
-		actions.put("listproducers", new ListProducersAction());
+		
+		// actions.put("jail", new JailAction());
+	    DefaultAction jailAction = (DefaultAction) actions.get("jail");
+	    jailAction.addParamKeyAtIndex(0, "target");
+	    jailAction.addParamKeyAtIndex(1, "minutes");
+	    jailAction.addRemainderKey("reason");
+	    actions.put("jail", jailAction);
+	    
+		// actions.put("listproducers", new ListProducersAction());
+        DefaultAction listProducersAction = (DefaultAction) actions.get("listproducers");
+        actions.put("listproducers", listProducersAction);
 
 		actions.put("me", new EmoteAction());
 		actions.put("msg", msg);
@@ -159,7 +184,7 @@ public class SlashActionRepository {
 		actions.put("where", new WhereAction());
 		actions.put("who", who);
 		actions.putAll(BareBonesBrowserLaunchCommandsFactory.createBrowserCommands());
-//		actions.put("wrap", new WrapAction());
+		//actions.put("wrap", new WrapAction());
 
 		actions.put("walk", new AutoWalkAction());
 		actions.put("stopwalk", new AutoWalkStopAction());
