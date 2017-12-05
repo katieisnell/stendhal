@@ -4,4 +4,10 @@
 	<group uri="actions/invisible.xml" />
 	<group uri="actions/teleport.xml" />
 	<group uri="actions/message.xml" />
+	<group uri="actions/group_management.xml" />
+	<group uri="actions/group_message.xml" />    
+	<group uri="actions/jail.xml" />
+	<group uri="actions/grumpy.xml" />        
+	<group uri="actions/inspect.xml" />        
+	<group uri="actions/list_producers.xml" />        
 </groups>
