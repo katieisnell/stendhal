@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../actions.xsd ">
+	<action name="tell">
+		<implementation class-name="games.stendhal.client.actions.MessageAction"/>
+		<type value="tell"/>
+		<number_of_parameters>
+			<minimum value="1" />
+			<maximum value="1" />
+		</number_of_parameters>
+	</action>
+</actions>
