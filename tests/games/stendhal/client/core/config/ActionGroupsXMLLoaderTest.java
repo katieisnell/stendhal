@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
-import games.stendhal.server.core.rule.defaultruleset.DefaultAction;
+import games.stendhal.client.core.rule.defaultruleset.DefaultAction;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 

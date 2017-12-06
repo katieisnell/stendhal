@@ -31,7 +31,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import games.stendhal.server.core.rule.defaultruleset.DefaultAction;
+import games.stendhal.client.core.rule.defaultruleset.DefaultAction;
 
 public final class ActionXMLLoader extends DefaultHandler {
 	

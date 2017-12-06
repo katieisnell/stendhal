@@ -16,12 +16,10 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
-//import games.stendhal.server.core.config.GroupsXMLLoader;
 import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-
-import games.stendhal.server.core.rule.defaultruleset.DefaultAction;
+import games.stendhal.client.core.rule.defaultruleset.DefaultAction;
 
 /**
  * Load and configure actions via an XML configuration file.
