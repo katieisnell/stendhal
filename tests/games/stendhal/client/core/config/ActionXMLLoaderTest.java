@@ -35,11 +35,11 @@ public class ActionXMLLoaderTest {
 		action.load(new URI("/data/conf/actions/invisible.xml"));
 		
 		//Check XML data is dealt with properly
-		assertEquals(action.get("name"), ("invisible"));
-		assertEquals(action.get("minimum"), ("0"));
-		assertEquals(action.get("maximum"), ("0"));
-		assertEquals(action.get("class-name"), ("games.stendhal.client.actions.InvisibleAction"));
-		assertEquals(action.get("type"), ("invisible"));
+		assertEquals(action.getName(), ("invisible"));
+		assertEquals(action.getMinimumParameters(), ("0"));
+		assertEquals(action.getMaximumParameters(), ("0"));
+		assertEquals(action.getImplementation(), ("games.stendhal.client.actions.InvisibleAction"));
+		assertEquals(action.getType(), ("invisible"));
 
 	}
 	
@@ -51,11 +51,11 @@ public class ActionXMLLoaderTest {
 		action.load(new URI("/data/conf/actions/teleport.xml"));
 		
 		//Check XML data is dealt with properly
-		assertEquals(action.get("name"), ("teleport"));
-		assertEquals(action.get("minimum"), ("4"));
-		assertEquals(action.get("maximum"), ("4"));
-		assertEquals(action.get("class-name"), ("games.stendhal.client.actions.TeleportAction"));
-		assertEquals(action.get("type"), ("teleport"));
+		assertEquals(action.getName(), ("teleport"));
+		assertEquals(action.getMinimumParameters(), ("4"));
+		assertEquals(action.getMaximumParameters(), ("4"));
+		assertEquals(action.getImplementation(), ("games.stendhal.client.actions.TeleportAction"));
+		assertEquals(action.getType(), ("teleport"));
 
 	}
 	
@@ -67,11 +67,11 @@ public class ActionXMLLoaderTest {
 		action.load(new URI("/data/conf/actions/message.xml"));
 		
 		//Check XML data is dealt with properly
-		assertEquals(action.get("name"), ("tell"));
-		assertEquals(action.get("minimum"), ("1"));
-		assertEquals(action.get("maximum"), ("1"));
-		assertEquals(action.get("class-name"), ("games.stendhal.client.actions.MessageAction"));
-		assertEquals(action.get("type"), ("tell"));
+		assertEquals(action.getName(), ("tell"));
+		assertEquals(action.getMinimumParameters(), ("1"));
+		assertEquals(action.getMaximumParameters(), ("1"));
+		assertEquals(action.getImplementation(), ("games.stendhal.client.actions.MessageAction"));
+		assertEquals(action.getType(), ("tell"));
 
 	}
 }
