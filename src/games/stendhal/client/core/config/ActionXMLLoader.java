@@ -37,7 +37,7 @@ public final class ActionXMLLoader extends DefaultHandler {
 	
 	private static final Logger logger = Logger.getLogger(ActionXMLLoader.class);
 	
-	private String action;
+	private String actionName;
 
 	private String implementation;
 	
@@ -81,7 +81,7 @@ public final class ActionXMLLoader extends DefaultHandler {
 	public void startElement(String uri, String localName, String qName,
 			Attributes attributes) throws SAXException {
 		if(qName.equals("action")) {
-			action = attributes.getValue("name");
+			actionName = attributes.getValue("name");
 		}
 		if(qName.equals("implementation")) {
 			implementation = attributes.getValue("class-name");
@@ -107,7 +107,8 @@ public final class ActionXMLLoader extends DefaultHandler {
 			DefaultAction action = new DefaultAction(type);
 			
 			action.setImplementation(implementation);
-			
+			action.setName(actionName);
+
 			if(parameterValues.containsKey("minimum")) {
 				action.setMinimumParameters(parameterValues.get("minimum"));
 			}
@@ -123,17 +124,25 @@ public final class ActionXMLLoader extends DefaultHandler {
 			parameterTagFound = false;
 		}
 	}
-
-	public String get(String name)  {
-		switch (name) {
-		
-		case "name" :       return action;
-		case "minimum" :    return parameterValues.get(name);
-		case "maximum" :    return parameterValues.get(name);
-		case "type" :       return type;
-		case "class-name" : return implementation;
-		default :           return "Doesn't exist";
-		
-	    }	
+	
+	public String getMaximumParameters() {
+		return parameterValues.get("maximum");
 	}
+
+	public String getMinimumParameters() {
+		return parameterValues.get("minimum");
+	}	
+	
+	public String getType() {
+		return this.type;
+	}
+	
+	public String getImplementation() {
+		return implementation;
+	}
+	
+	public String getName() {
+		return actionName;
+	}
+	
 }

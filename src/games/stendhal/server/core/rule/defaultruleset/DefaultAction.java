@@ -27,8 +27,11 @@ public class DefaultAction implements SlashAction{
 	/** Maximum number of parameters required for this action */
 	private int maxParameters;
 	
-	/** The implementation class for this action*/
+	/** The implementation class for this action */
 	private String implementation;
+	
+	/** The name of the action */
+	private String name;
 	/** Creates a default action. */
 	public DefaultAction(final String type) {
 		this.type = type;
@@ -77,6 +80,10 @@ public class DefaultAction implements SlashAction{
 		this.maxParameters = Integer.parseInt(maxParameters);
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	@Override
 	public int getMaximumParameters() {
 		return maxParameters;
@@ -89,6 +96,14 @@ public class DefaultAction implements SlashAction{
 	
 	public String getType() {
 		return this.type;
+	}
+	
+	public String getImplementation() {
+		return implementation;
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	@Override
