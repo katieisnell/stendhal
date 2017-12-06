@@ -139,13 +139,23 @@ public class SlashActionRepository {
 
 		actions.put("p", groupMessage);
 		actions.put("profile", new ProfileAction());
-		actions.put("travellog", new TravelLogAction());
+		
+		// actions.put("travellog", new TravelLogAction());
+		DefaultAction travelLogAction = (DefaultAction) actions.get("progressstatus");
+		actions.put("progressstatus", travelLogAction);
 
 		actions.put("quit", new QuitAction());
 
-		actions.put("remove", new RemoveBuddyAction());
+		// actions.put("remove", new RemoveBuddyAction());
+		DefaultAction removeBuddyAction = (DefaultAction) actions.get("removebuddy");
+		removeBuddyAction.addParamKeyAtIndex(0, "target");
+		actions.put("removebuddy", removeBuddyAction);
 
-		actions.put("sentence", new SentenceAction());
+		// actions.put("sentence", new SentenceAction());
+		DefaultAction sentenceAction = (DefaultAction) actions.get("sentence");
+		sentenceAction.addRemainderKey("value");
+		actions.put("sentence", sentenceAction);
+		
 		actions.put("status", new SentenceAction()); // Alias for /sentence
 		actions.put("settings", new SettingsAction());
 
@@ -153,14 +163,29 @@ public class SlashActionRepository {
 		actions.put("volume", new VolumeAction());
 		actions.put("vol", new VolumeAction());
 
-		actions.put("storemessage", new StoreMessageAction());
+		// actions.put("storemessage", new StoreMessageAction());
+		DefaultAction storeMessageAction = (DefaultAction) actions.get("storemessage");
+		storeMessageAction.addParamKeyAtIndex(0, "target");
+		storeMessageAction.addRemainderKey("text");
+		actions.put("storemessage", storeMessageAction);
+		
 		actions.put("postmessage", new StoreMessageAction());
 
 		actions.put("summonat", new SummonAtAction());
 		actions.put("summon", new SummonAction());
-		actions.put("supportanswer", supporta);
+		
+		// actions.put("supportanswer", supporta);
+		DefaultAction supportAnswerAction = (DefaultAction) actions.get("supportanswer");
+		supportAnswerAction.addParamKeyAtIndex(0, "target");
+		supportAnswerAction.addRemainderKey("text");
+		actions.put("supportanswer", supportAnswerAction);
+		
 		actions.put("supporta", supporta);
-		actions.put("support", new SupportAction());
+		
+		// actions.put("support", new SupportAction());
+		DefaultAction supportAction = (DefaultAction) actions.get("support");
+		supportAction.addRemainderKey("text");
+		actions.put("support", supportAction);
 
 		actions.put("takescreenshot", new ScreenshotAction());
 		
@@ -172,8 +197,16 @@ public class SlashActionRepository {
 		teleportAction.addParamKeyAtIndex(3,  "y");
 		actions.put("teleport", teleportAction);
 		
-		actions.put("teleportto", new TeleportToAction());
-		actions.put("tellall", new TellAllAction());
+		// actions.put("teleportto", new TeleportToAction());
+		DefaultAction teleportToAction = (DefaultAction) actions.get("teleportto");
+		teleportToAction.addRemainderKey("target");
+		actions.put("teleportto", teleportToAction);
+		
+		// actions.put("tellall", new TellAllAction());
+		DefaultAction tellAllAction = (DefaultAction) actions.get("tellall");
+		tellAllAction.addRemainderKey("text");
+		actions.put("tellall", tellAllAction);
+		
 		
 		// actions.put("tell", msg);
 		DefaultAction messageAction = (DefaultAction) actions.get("tell");
@@ -181,7 +214,11 @@ public class SlashActionRepository {
 		messageAction.addRemainderKey("text");
 		actions.put("tell", messageAction);
 
-		actions.put("where", new WhereAction());
+		// actions.put("where", new WhereAction());
+		DefaultAction whereAction = (DefaultAction) actions.get("where");
+		whereAction.addRemainderKey("target");
+		actions.put("where", whereAction);
+		
 		actions.put("who", who);
 		actions.putAll(BareBonesBrowserLaunchCommandsFactory.createBrowserCommands());
 		//actions.put("wrap", new WrapAction());
