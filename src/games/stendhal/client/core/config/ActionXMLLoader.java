@@ -120,4 +120,16 @@ public final class ActionXMLLoader extends DefaultHandler {
 		}
 	}
 
+	public String get(String name)  {
+		switch (name) {
+		
+		case "name" :       return action;
+		case "minimum" :    return parameterValues.get(name);
+		case "maximum" :    return parameterValues.get(name);
+		case "type" :       return type;
+		case "class-name" : return implementation;
+		default :           return "Doesn't exist";
+		
+	    }	
+	}
 }
