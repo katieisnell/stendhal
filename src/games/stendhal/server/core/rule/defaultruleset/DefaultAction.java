@@ -27,6 +27,8 @@ public class DefaultAction implements SlashAction{
 	/** Maximum number of parameters required for this action */
 	private int maxParameters;
 	
+	/** The implementation class for this action*/
+	private String implementation;
 	/** Creates a default action. */
 	public DefaultAction(final String type) {
 		this.type = type;
@@ -63,6 +65,10 @@ public class DefaultAction implements SlashAction{
 		this.remainderKey = remainderKey;
 	}
 	
+	public void setImplementation(String implementation) {
+		this.implementation = implementation;
+	}
+	
 	public void setMinimumParameters(String minParameters) {
 		this.minParameters = Integer.parseInt(minParameters);
 	}
@@ -83,5 +89,10 @@ public class DefaultAction implements SlashAction{
 	
 	public String getType() {
 		return this.type;
+	}
+	
+	@Override
+	public String toString() {
+		return implementation + "@" + Integer.toHexString(hashCode());
 	}
 }

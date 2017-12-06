@@ -86,6 +86,7 @@ public final class ActionXMLLoader extends DefaultHandler {
 		if(qName.equals("implementation")) {
 			implementation = attributes.getValue("class-name");
 		}
+		
 		if(qName.equals("type")) {
 			type = attributes.getValue("value");
 		}
@@ -105,6 +106,7 @@ public final class ActionXMLLoader extends DefaultHandler {
 		if(qName.equals("action")) {
 			DefaultAction action = new DefaultAction(type);
 			
+			action.setImplementation(implementation);
 			
 			if(parameterValues.containsKey("minimum")) {
 				action.setMinimumParameters(parameterValues.get("minimum"));
@@ -112,6 +114,8 @@ public final class ActionXMLLoader extends DefaultHandler {
 			if(parameterValues.containsKey("maximum")) {
 				action.setMaximumParameters(parameterValues.get("maximum"));
 			}
+			
+			
 			
 			loadedActions.add(action);
 		}
