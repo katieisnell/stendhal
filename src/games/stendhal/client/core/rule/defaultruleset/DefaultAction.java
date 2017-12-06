@@ -32,6 +32,7 @@ public class DefaultAction implements SlashAction{
 	
 	/** The name of the action */
 	private String name;
+	
 	/** Creates a default action. */
 	public DefaultAction(final String type) {
 		this.type = type;
@@ -104,6 +105,14 @@ public class DefaultAction implements SlashAction{
 	
 	public String getName() {
 		return name;
+	}
+	
+	public String getRemainderKey() {
+		return remainderKey;
+	}
+	
+	public String[] getParamsKeys() {
+		return paramsKeys;
 	}
 	
 	@Override
