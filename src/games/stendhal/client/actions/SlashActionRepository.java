@@ -41,7 +41,7 @@ public class SlashActionRepository {
 	public static void register() {
 		final SlashAction msg = new MessageAction();
 		final SlashAction supporta = new SupportAnswerAction();
-		final SlashAction who = new WhoAction();
+		//final SlashAction who = new WhoAction();
 		final SlashAction help = new HelpAction();
 
 		final GroupMessageAction groupMessage = new GroupMessageAction();
@@ -69,7 +69,12 @@ public class SlashActionRepository {
 		actions.put("/", new RemessageAction());
 		actions.put("add", new AddBuddyAction());
 		actions.put("adminlevel", new AdminLevelAction());
-		actions.put("adminnote", new AdminNoteAction());
+		//actions.put("adminnote", new AdminNoteAction());
+		DefaultAction adminNoteAction = (DefaultAction) actions.get("adminnote");
+		adminNoteAction.addParamKeyAtIndex(0, "target");
+		adminNoteAction.addRemainderKey("note");
+		actions.put("adminnote", adminNoteAction);
+		
 		actions.put("alter", new AlterAction());
 		actions.put("altercreature", new AlterCreatureAction());
 		actions.put("alterquest", new AlterQuestAction());
@@ -77,7 +82,12 @@ public class SlashActionRepository {
 		actions.put("atlas", new AtlasBrowserLaunchCommand());
 		actions.put("away", new AwayAction());
 
-		actions.put("ban", new BanAction());
+		//actions.put("ban", new BanAction());
+		DefaultAction banAction = (DefaultAction) actions.get("ban");
+		banAction.addParamKeyAtIndex(0, "target");
+		banAction.addParamKeyAtIndex(1, "hours");
+		banAction.addRemainderKey("reason");
+		actions.put("ban", banAction);
 
 		actions.put("clear", new ClearChatLogAction());
 		actions.put("clickmode", new ClickModeAction());
@@ -89,53 +99,64 @@ public class SlashActionRepository {
 
 		actions.put("cast", new CastSpellAction());
 
-		actions.put("gag", new GagAction());
+		//actions.put("gag", new GagAction());
+		DefaultAction gagAction = (DefaultAction) actions.get("gag");
+		gagAction.addParamKeyAtIndex(0, "target");
+		gagAction.addParamKeyAtIndex(1, "minutes");
+		gagAction.addRemainderKey("reason");
+		actions.put("gag", gagAction);
+		
 		actions.put("gmhelp", new GMHelpAction());
 
 		// actions.put("group", new GroupManagementAction(groupMessage));
-        DefaultAction groupManagementAction = (DefaultAction) actions.get("group_management");
-        groupManagementAction.addParamKeyAtIndex(0, "action");
-        groupManagementAction.addRemainderKey("params");
-        actions.put("group", groupManagementAction);
+		DefaultAction groupManagementAction = (DefaultAction) actions.get("group_management");
+		groupManagementAction.addParamKeyAtIndex(0, "action");
+		groupManagementAction.addRemainderKey("params");
+		actions.put("group", groupManagementAction);
 
 		// actions.put("groupmessage", groupMessage);
-        DefaultAction groupMessageAction = (DefaultAction) actions.get("group_message");
-        groupMessageAction.addRemainderKey("text");
-        actions.put("groupmessage", groupMessageAction);
+		DefaultAction groupMessageAction = (DefaultAction) actions.get("group_message");
+		groupMessageAction.addRemainderKey("text");
+		actions.put("groupmessage", groupMessageAction);
 
-        //actions.put("grumpy", new GrumpyAction());
-        DefaultAction grumpyAction = (DefaultAction) actions.get("grumpy");
-        grumpyAction.addRemainderKey("reason");
-        actions.put("grumpy", grumpyAction);
+		//actions.put("grumpy", new GrumpyAction());
+		DefaultAction grumpyAction = (DefaultAction) actions.get("grumpy");
+		grumpyAction.addRemainderKey("reason");
+		actions.put("grumpy", grumpyAction);
         
 		actions.put("help", help);
 
 		actions.put("ignore", new IgnoreAction());
 
 		//actions.put("inspect", new InspectAction());
-	    DefaultAction inspectAction = (DefaultAction) actions.get("inspect");
-	    inspectAction.addParamKeyAtIndex(0, "target");
-	    actions.put("inspect", inspectAction);
+		DefaultAction inspectAction = (DefaultAction) actions.get("inspect");
+		inspectAction.addParamKeyAtIndex(0, "target");
+		actions.put("inspect", inspectAction);
 	    
 		// actions that don't have any parameters or remainder don't have to be updated in the table
 		// actions.put("invisible", new InvisibleAction());
 		
 		// actions.put("jail", new JailAction());
-	    DefaultAction jailAction = (DefaultAction) actions.get("jail");
-	    jailAction.addParamKeyAtIndex(0, "target");
-	    jailAction.addParamKeyAtIndex(1, "minutes");
-	    jailAction.addRemainderKey("reason");
-	    actions.put("jail", jailAction);
+		DefaultAction jailAction = (DefaultAction) actions.get("jail");
+		jailAction.addParamKeyAtIndex(0, "target");
+		jailAction.addParamKeyAtIndex(1, "minutes");
+		jailAction.addRemainderKey("reason");
+		actions.put("jail", jailAction);
 	    
 		// actions.put("listproducers", new ListProducersAction());
-        DefaultAction listProducersAction = (DefaultAction) actions.get("listproducers");
-        actions.put("listproducers", listProducersAction);
+		DefaultAction listProducersAction = (DefaultAction) actions.get("listproducers");
+		actions.put("listproducers", listProducersAction);
 
-		actions.put("me", new EmoteAction());
+		//actions.put("me", new EmoteAction());
+		DefaultAction emoteAction = (DefaultAction) actions.get("emote");
+		emoteAction.addRemainderKey("text");
+		actions.put("me", emoteAction);
+		
 		actions.put("msg", msg);
 		actions.put("mute", new MuteAction());
 
-		actions.put("names", who);
+		DefaultAction whoAction = (DefaultAction) actions.get("who");
+		actions.put("names", whoAction);
 
 		actions.put("p", groupMessage);
 		actions.put("profile", new ProfileAction());
@@ -219,16 +240,27 @@ public class SlashActionRepository {
 		whereAction.addRemainderKey("target");
 		actions.put("where", whereAction);
 		
-		actions.put("who", who);
+		//actions.put("who", who);
+		actions.put("who", whoAction);
+		
 		actions.putAll(BareBonesBrowserLaunchCommandsFactory.createBrowserCommands());
 		//actions.put("wrap", new WrapAction());
 
-		actions.put("walk", new AutoWalkAction());
-		actions.put("stopwalk", new AutoWalkStopAction());
+		//actions.put("walk", new AutoWalkAction());
+		DefaultAction walkAction = (DefaultAction) actions.get("walk");
+		messageAction.addRemainderKey("target");
+		actions.put("walk", walkAction);
+		
+		//actions.put("stopwalk", new AutoWalkStopAction());
+		DefaultAction autoWalkStopAction = (DefaultAction) actions.get("walk");
+		autoWalkStopAction.addRemainderKey("target");
+		actions.put("stopwalk", autoWalkStopAction);
 
 		// PvP challenge actions
-		actions.put("challenge", new CreateChallengeAction());
+		actions.put("challenge", new CreateChallengeAction());		
 		actions.put("accept", new AcceptChallengeAction());
+
+
 	}
 
 	/**

@@ -19,4 +19,11 @@
 	<group uri="actions/where.xml" />
 	<group uri="actions/sentence.xml" />
 	<group uri="actions/travel_log.xml" />
+	<group uri="actions/admin_note.xml" />
+	<group uri="actions/auto_walk.xml" />
+	<group uri="actions/auto_walk_stop.xml" />
+	<group uri="actions/ban.xml" />
+	<group uri="actions/emote.xml" />
+	<group uri="actions/gag.xml" />	
+	<group uri="actions/who.xml" />	
 </groups>
