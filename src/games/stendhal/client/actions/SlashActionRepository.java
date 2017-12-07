@@ -40,11 +40,11 @@ public class SlashActionRepository {
 	 */
 	public static void register() {
 		final SlashAction msg = new MessageAction();
-		final SlashAction supporta = new SupportAnswerAction();
-		//final SlashAction who = new WhoAction();
+		// final SlashAction supporta = new SupportAnswerAction();
+		// final SlashAction who = new WhoAction();
 		final SlashAction help = new HelpAction();
 
-		final GroupMessageAction groupMessage = new GroupMessageAction();
+		// final GroupMessageAction groupMessage = new GroupMessageAction();
 		
 		// build table of DefaultActions
 		try {
@@ -158,7 +158,7 @@ public class SlashActionRepository {
 		DefaultAction whoAction = (DefaultAction) actions.get("who");
 		actions.put("names", whoAction);
 
-		actions.put("p", groupMessage);
+		actions.put("p", groupMessageAction);
 		actions.put("profile", new ProfileAction());
 		
 		// actions.put("travellog", new TravelLogAction());
@@ -177,7 +177,7 @@ public class SlashActionRepository {
 		sentenceAction.addRemainderKey("value");
 		actions.put("sentence", sentenceAction);
 		
-		actions.put("status", new SentenceAction()); // Alias for /sentence
+		actions.put("status", sentenceAction); // Alias for /sentence
 		actions.put("settings", new SettingsAction());
 
 		actions.put("sound", new SoundAction());
@@ -190,7 +190,7 @@ public class SlashActionRepository {
 		storeMessageAction.addRemainderKey("text");
 		actions.put("storemessage", storeMessageAction);
 		
-		actions.put("postmessage", new StoreMessageAction());
+		actions.put("postmessage", storeMessageAction);
 
 		actions.put("summonat", new SummonAtAction());
 		actions.put("summon", new SummonAction());
@@ -201,7 +201,7 @@ public class SlashActionRepository {
 		supportAnswerAction.addRemainderKey("text");
 		actions.put("supportanswer", supportAnswerAction);
 		
-		actions.put("supporta", supporta);
+		actions.put("supporta", supportAnswerAction);
 		
 		// actions.put("support", new SupportAction());
 		DefaultAction supportAction = (DefaultAction) actions.get("support");
