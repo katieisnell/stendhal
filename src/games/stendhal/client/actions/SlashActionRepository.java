@@ -140,12 +140,12 @@ public class SlashActionRepository {
 		actions.put("takescreenshot", new ScreenshotAction());
 		
 		//actions.put("teleport", new TeleportAction());
-		DefaultAction teleportAction = (DefaultAction) actions.get("teleport");
-		teleportAction.addParamKeyAtIndex(0,  "target");
-		teleportAction.addParamKeyAtIndex(1,  "zone");
-		teleportAction.addParamKeyAtIndex(2,  "x");
-		teleportAction.addParamKeyAtIndex(3,  "y");
-		actions.put("teleport", teleportAction);
+//		DefaultAction teleportAction = (DefaultAction) actions.get("teleport");
+//		teleportAction.addParamKeyAtIndex(0,  "target");
+//		teleportAction.addParamKeyAtIndex(1,  "zone");
+//		teleportAction.addParamKeyAtIndex(2,  "x");
+//		teleportAction.addParamKeyAtIndex(3,  "y");
+//		actions.put("teleport", teleportAction);
 		
 		actions.put("teleportto", new TeleportToAction());
 		actions.put("tellall", new TellAllAction());

@@ -42,6 +42,8 @@ public final class ActionXMLLoader extends DefaultHandler {
 	private String implementation;
 	
 	private Map<String, String> parameterValues;
+	
+	private Map<Integer, String> paramIndices;
 
 	private List<DefaultAction> loadedActions;
 
@@ -82,6 +84,7 @@ public final class ActionXMLLoader extends DefaultHandler {
 			Attributes attributes) throws SAXException {
 		if(qName.equals("action")) {
 			actionName = attributes.getValue("name");
+			paramIndices = new HashMap<>();
 		}
 		if(qName.equals("implementation")) {
 			implementation = attributes.getValue("class-name");
@@ -89,6 +92,11 @@ public final class ActionXMLLoader extends DefaultHandler {
 		
 		if(qName.equals("type")) {
 			type = attributes.getValue("value");
+		}
+		if(qName.equals("param")){
+			int index = Integer.parseInt(attributes.getValue("index"));
+			String name = attributes.getValue("key");
+			paramIndices.put(index, name);
 		}
 		if(qName.equals("number_of_parameters")) {
 			parameterTagFound = true;
@@ -116,7 +124,10 @@ public final class ActionXMLLoader extends DefaultHandler {
 				action.setMaximumParameters(parameterValues.get("maximum"));
 			}
 			
-			
+			for (Map.Entry<Integer, String> pair : paramIndices.entrySet())
+			{
+				action.addParamKeyAtIndex(pair.getKey(), pair.getValue());
+			}
 			
 			loadedActions.add(action);
 		}
