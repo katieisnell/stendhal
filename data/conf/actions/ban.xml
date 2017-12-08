@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../actions.xsd ">
-	<action name="invisible">
+	<action name="ban">
 		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
-		<type value="invisible"/>
+		<type value="ban"/>
+		<param key="target" index="0" />
+		<param key="hours" index="1" />			
+		<remainder key="reason" />			
 		<number_of_parameters>
-			<minimum value="0" />
-			<maximum value="0" />
+			<minimum value="2" />
+			<maximum value="2" />
 		</number_of_parameters>
 	</action>
 </actions>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../actions.xsd ">
-	<action name="invisible">
+	<action name="group_message">
 		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
-		<type value="invisible"/>
+		<type value="group_message"/>
+		<remainder key="text" />
 		<number_of_parameters>
 			<minimum value="0" />
 			<maximum value="0" />

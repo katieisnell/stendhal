@@ -4,4 +4,26 @@
 	<group uri="actions/invisible.xml" />
 	<group uri="actions/teleport.xml" />
 	<group uri="actions/message.xml" />
+	<group uri="actions/group_management.xml" />
+	<group uri="actions/group_message.xml" />    
+	<group uri="actions/jail.xml" />
+	<group uri="actions/grumpy.xml" />        
+	<group uri="actions/inspect.xml" />        
+	<group uri="actions/list_producers.xml" />
+	<group uri="actions/remove_buddy.xml" />
+	<group uri="actions/store_message.xml" />
+	<group uri="actions/support.xml" />
+	<group uri="actions/support_answer.xml" />
+	<group uri="actions/teleport_to.xml" />
+	<group uri="actions/tell_all.xml" />
+	<group uri="actions/where.xml" />
+	<group uri="actions/sentence.xml" />
+	<group uri="actions/travel_log.xml" />
+	<group uri="actions/admin_note.xml" />
+	<group uri="actions/auto_walk.xml" />
+	<group uri="actions/auto_walk_stop.xml" />
+	<group uri="actions/ban.xml" />
+	<group uri="actions/emote.xml" />
+	<group uri="actions/gag.xml" />	
+	<group uri="actions/who.xml" />	
 </groups>

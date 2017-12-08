@@ -40,7 +40,7 @@ public class ActionXMLLoaderTest {
 		assertEquals(action.getName(), ("invisible"));
 		assertEquals(action.getMinimumParameters(), ("0"));
 		assertEquals(action.getMaximumParameters(), ("0"));
-		assertEquals(action.getImplementation(), ("games.stendhal.client.actions.InvisibleAction"));
+		assertEquals(action.getImplementation(), ("games.stendhal.client.actions.DefaultAction"));
 		assertEquals(action.getType(), ("invisible"));
 		
 		// Parameters and remainders specific to this action
@@ -85,11 +85,11 @@ public class ActionXMLLoaderTest {
 		assertEquals(action.getName(), ("tell"));
 		assertEquals(action.getMinimumParameters(), ("1"));
 		assertEquals(action.getMaximumParameters(), ("1"));
-		assertEquals(action.getImplementation(), ("games.stendhal.client.actions.MessageAction"));
+		assertEquals(action.getImplementation(), ("games.stendhal.client.actions.DefaultAction"));
 		assertEquals(action.getType(), ("tell"));
 		
 		// Parameters and remainders specific to this action
-		assertEquals(action.getParamIndices(0), "message");
+		assertEquals(action.getParamIndices(0), "target");
 		assertNull(action.getParamIndices(1));
 
 		assertEquals(action.getRemainder(), "text");

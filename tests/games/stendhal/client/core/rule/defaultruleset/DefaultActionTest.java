@@ -59,7 +59,7 @@ public class DefaultActionTest {
 		assertEquals(action.getName(), ("invisible"));
 		assertEquals(action.getMinimumParameters(), ("0"));
 		assertEquals(action.getMaximumParameters(), ("0"));
-		assertEquals(action.getImplementation(), ("games.stendhal.client.actions.InvisibleAction"));
+		assertEquals(action.getImplementation(), ("games.stendhal.client.actions.DefaultAction"));
 		assertEquals(action.getType(), ("invisible"));
 	}
 }
