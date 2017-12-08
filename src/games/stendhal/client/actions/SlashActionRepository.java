@@ -64,7 +64,6 @@ public class SlashActionRepository {
 		
 		// now go through all DefaultActions from the table 
 		// and update the ones that have parameters or remainder
-		// (for now just Teleport and Message)
 
 		actions.put("/", new RemessageAction());
 		actions.put("add", new AddBuddyAction());
@@ -109,43 +108,38 @@ public class SlashActionRepository {
 		actions.put("gmhelp", new GMHelpAction());
 
 		// actions.put("group", new GroupManagementAction(groupMessage));
-		DefaultAction groupManagementAction = (DefaultAction) actions.get("group_management");
-		groupManagementAction.addParamKeyAtIndex(0, "action");
-		groupManagementAction.addRemainderKey("params");
-		actions.put("group", groupManagementAction);
+		//DefaultAction groupManagementAction = (DefaultAction) actions.get("group_management");
+		//groupManagementAction.addParamKeyAtIndex(0, "action");
+		//groupManagementAction.addRemainderKey("params");
+		//actions.put("group", groupManagementAction);
 
 		// actions.put("groupmessage", groupMessage);
-		DefaultAction groupMessageAction = (DefaultAction) actions.get("group_message");
-		groupMessageAction.addRemainderKey("text");
-		actions.put("groupmessage", groupMessageAction);
+		//DefaultAction groupMessageAction = (DefaultAction) actions.get("group_message");
+		//groupMessageAction.addRemainderKey("text");
+		//actions.put("groupmessage", groupMessageAction);
 
 		//actions.put("grumpy", new GrumpyAction());
-		DefaultAction grumpyAction = (DefaultAction) actions.get("grumpy");
-		grumpyAction.addRemainderKey("reason");
-		actions.put("grumpy", grumpyAction);
+		//DefaultAction grumpyAction = (DefaultAction) actions.get("grumpy");
+		//grumpyAction.addRemainderKey("reason");
+		//actions.put("grumpy", grumpyAction);
         
 		actions.put("help", help);
 
 		actions.put("ignore", new IgnoreAction());
 
 		//actions.put("inspect", new InspectAction());
-		DefaultAction inspectAction = (DefaultAction) actions.get("inspect");
-		inspectAction.addParamKeyAtIndex(0, "target");
-		actions.put("inspect", inspectAction);
+		//DefaultAction inspectAction = (DefaultAction) actions.get("inspect");
+		//inspectAction.addParamKeyAtIndex(0, "target");
+		//actions.put("inspect", inspectAction);
 	    
 		// actions that don't have any parameters or remainder don't have to be updated in the table
 		// actions.put("invisible", new InvisibleAction());
 		
 		// actions.put("jail", new JailAction());
-		DefaultAction jailAction = (DefaultAction) actions.get("jail");
-		jailAction.addParamKeyAtIndex(0, "target");
-		jailAction.addParamKeyAtIndex(1, "minutes");
-		jailAction.addRemainderKey("reason");
-		actions.put("jail", jailAction);
 	    
 		// actions.put("listproducers", new ListProducersAction());
-		DefaultAction listProducersAction = (DefaultAction) actions.get("listproducers");
-		actions.put("listproducers", listProducersAction);
+		// DefaultAction listProducersAction = (DefaultAction) actions.get("listproducers");
+		// actions.put("listproducers", listProducersAction);
 
 		//actions.put("me", new EmoteAction());
 		//DefaultAction emoteAction = (DefaultAction) actions.get("emote");
@@ -159,7 +153,7 @@ public class SlashActionRepository {
 		//DefaultAction whoAction = (DefaultAction) actions.get("who");
 		actions.put("names", actions.get("who"));
 
-		actions.put("p", groupMessageAction);
+		actions.put("p", actions.get("groupmessage"));
 		actions.put("profile", new ProfileAction());
 		
 		// actions.put("travellog", new TravelLogAction());
@@ -205,41 +199,22 @@ public class SlashActionRepository {
 		actions.put("supporta", actions.get("supportanswer"));
 		
 		// actions.put("support", new SupportAction());
-		//DefaultAction supportAction = (DefaultAction) actions.get("support");
-		//supportAction.addRemainderKey("text");
-		//actions.put("support", supportAction);
 
 		actions.put("takescreenshot", new ScreenshotAction());
 		
 		//actions.put("teleport", new TeleportAction());
-		//DefaultAction teleportAction = (DefaultAction) actions.get("teleport");
-		//teleportAction.addParamKeyAtIndex(0,  "target");
-		//teleportAction.addParamKeyAtIndex(1,  "zone");
-		//teleportAction.addParamKeyAtIndex(2,  "x");
-		//teleportAction.addParamKeyAtIndex(3,  "y");
-		//actions.put("teleport", teleportAction);
 		
 		// actions.put("teleportto", new TeleportToAction());
-		//DefaultAction teleportToAction = (DefaultAction) actions.get("teleportto");
-		//teleportToAction.addRemainderKey("target");
-		//actions.put("teleportto", teleportToAction);
 		
 		// actions.put("tellall", new TellAllAction());
-		//DefaultAction tellAllAction = (DefaultAction) actions.get("tellall");
-		//tellAllAction.addRemainderKey("text");
-		//actions.put("tellall", tellAllAction);
-		
 		
 		// actions.put("tell", msg);
-		DefaultAction messageAction = (DefaultAction) actions.get("tell");
-		messageAction.addParamKeyAtIndex(0, "target");
-		messageAction.addRemainderKey("text");
-		actions.put("tell", messageAction);
+		//DefaultAction messageAction = (DefaultAction) actions.get("tell");
+		//messageAction.addParamKeyAtIndex(0, "target");
+		//messageAction.addRemainderKey("text");
+		//actions.put("tell", messageAction);
 
 		// actions.put("where", new WhereAction());
-		//DefaultAction whereAction = (DefaultAction) actions.get("where");
-		//whereAction.addRemainderKey("target");
-		//actions.put("where", whereAction);
 		
 		//actions.put("who", who);
 		//actions.put("who", whoAction);
@@ -248,9 +223,6 @@ public class SlashActionRepository {
 		//actions.put("wrap", new WrapAction());
 
 		//actions.put("walk", new AutoWalkAction());
-		//DefaultAction walkAction = (DefaultAction) actions.get("walk");
-		//messageAction.addRemainderKey("target");
-		//actions.put("walk", walkAction);
 		
 		//actions.put("stopwalk", new AutoWalkStopAction());
 		//DefaultAction autoWalkStopAction = (DefaultAction) actions.get("walk");
@@ -260,8 +232,6 @@ public class SlashActionRepository {
 		// PvP challenge actions
 		actions.put("challenge", new CreateChallengeAction());		
 		actions.put("accept", new AcceptChallengeAction());
-
-
 	}
 
 	/**
