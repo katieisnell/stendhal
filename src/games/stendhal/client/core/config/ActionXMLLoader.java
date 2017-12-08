@@ -163,4 +163,12 @@ public final class ActionXMLLoader extends DefaultHandler {
 		return actionName;
 	}
 	
+	public String getRemainder() {
+		return remainderKey;
+	}
+	
+	public String getParamIndices(int index) {
+		return paramIndices.get(index);
+	}
+	
 }

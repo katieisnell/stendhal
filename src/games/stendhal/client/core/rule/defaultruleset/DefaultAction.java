@@ -107,7 +107,7 @@ public class DefaultAction implements SlashAction{
 		return name;
 	}
 	
-	public String getRemainderKey() {
+	public String getRemainder() {
 		return remainderKey;
 	}
 	
