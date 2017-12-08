@@ -41,6 +41,8 @@ public final class ActionXMLLoader extends DefaultHandler {
 
 	private String implementation;
 	
+	private String remainderKey;
+	
 	private Map<String, String> parameterValues;
 	
 	private Map<Integer, String> paramIndices;
@@ -98,6 +100,9 @@ public final class ActionXMLLoader extends DefaultHandler {
 			String name = attributes.getValue("key");
 			paramIndices.put(index, name);
 		}
+		if (qName.equals("remainder")) {
+			remainderKey = attributes.getValue("key");
+		}
 		if(qName.equals("number_of_parameters")) {
 			parameterTagFound = true;
 			parameterValues = new HashMap<String, String>();
@@ -128,6 +133,8 @@ public final class ActionXMLLoader extends DefaultHandler {
 			{
 				action.addParamKeyAtIndex(pair.getKey(), pair.getValue());
 			}
+			
+			action.addRemainderKey(remainderKey);
 			
 			loadedActions.add(action);
 		}

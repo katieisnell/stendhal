@@ -16,6 +16,7 @@
 			<element name="implementation" type="Q3:Implementation" />
 			<element name="type" type="Q3:Type" />
 			<element name="param" type="Q3:Param" minOccurs="0" maxOccurs="unbounded" />
+			<element name="remainder" type="Q3:remainder" minOccurs="0" maxOccurs="1" />
 			<element name="number_of_parameters" type="Q3:NumberOfParameters" />
 		</sequence>
 		<attribute name="name" type="string" use="required"/>
@@ -32,6 +33,10 @@
     <complexType name="Param">
     		<attribute name="key" type="string" />
     		<attribute name="index" type="integer" />
+    </complexType>
+    
+    <complexType name="remainder">
+    		<attribute name="key" type="string" />
     </complexType>
     
     <complexType name="NumberOfParameters">
