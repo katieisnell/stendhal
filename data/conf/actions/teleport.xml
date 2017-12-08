@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="stendhal ../actions.xsd ">
-	<action name="teleport">
-		<implementation class-name="games.stendhal.client.actions.TeleportAction"/>
-		<type value="teleport"/>
-		<number_of_parameters>
-			<minimum value="4" />
-			<maximum value="4" />
-		</number_of_parameters>
-	</action>
+    xsi:schemaLocation="stendhal ../actions.xsd ">
+    <action name="teleport">
+        <implementation class-name="games.stendhal.client.actions.DefaultAction"/>
+        <type value="teleport"/>
+        <param key="target" index="0" />
+        <param key="zone" index="1" />
+        <param key="x" index="2" />
+        <param key="y" index="3" />
+        <number_of_parameters>
+            <minimum value="4" />
+            <maximum value="4" />
+        </number_of_parameters>
+    </action>
 </actions>
