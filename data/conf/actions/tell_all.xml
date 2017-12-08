@@ -2,8 +2,9 @@
 <actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../actions.xsd ">
 	<action name="tellall">
-		<implementation class-name="games.stendhal.client.actions.TellAllAction"/>
+		<implementation class-name="games.stendhal.client.actions.DefaultlAction"/>
 		<type value="tellall"/>
+		<remainder key="text" />
 		<number_of_parameters>
 			<minimum value="0" />
 			<maximum value="0" />

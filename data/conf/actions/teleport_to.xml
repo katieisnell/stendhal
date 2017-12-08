@@ -2,8 +2,9 @@
 <actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../actions.xsd ">
 	<action name="teleportto">
-		<implementation class-name="games.stendhal.client.actions.TeleportToAction"/>
+		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
 		<type value="teleportto"/>
+		<remainder key="target" />
 		<number_of_parameters>
 			<minimum value="0" />
 			<maximum value="0" />
