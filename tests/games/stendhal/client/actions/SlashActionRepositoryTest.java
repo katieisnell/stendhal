@@ -39,29 +39,29 @@ public class SlashActionRepositoryTest {
 		assertThat(SlashActionRepository.get("answer").toString(), containsString("AnswerAction"));
 		assertThat(SlashActionRepository.get("away").toString(), containsString("AwayAction"));
 		assertThat(SlashActionRepository.get("drop").toString(), containsString("DropAction"));
-		assertThat(SlashActionRepository.get("gag").toString(), containsString("GagAction"));
+		assertThat(SlashActionRepository.get("gag").toString(), containsString("DefaultAction"));
 		assertThat(SlashActionRepository.get("gmhelp").toString(), containsString("GMHelpAction"));
-		assertThat(SlashActionRepository.get("grumpy").toString(), containsString("GrumpyAction"));
+		assertThat(SlashActionRepository.get("grumpy").toString(), containsString("DefaultAction"));
 		assertThat(SlashActionRepository.get("help").toString(), containsString("HelpAction"));
 		assertThat(SlashActionRepository.get("ignore").toString(), containsString("IgnoreAction"));
-		assertThat(SlashActionRepository.get("inspect").toString(), containsString("InspectAction"));
-		assertThat(SlashActionRepository.get("invisible").toString(), containsString("InvisibleAction"));
-		assertThat(SlashActionRepository.get("jail").toString(), containsString("JailAction"));
-		assertThat(SlashActionRepository.get("msg").toString(), containsString("MessageAction"));
+		assertThat(SlashActionRepository.get("inspect").toString(), containsString("DefaultAction"));
+		assertThat(SlashActionRepository.get("invisible").toString(), containsString("DefaultAction"));
+		assertThat(SlashActionRepository.get("jail").toString(), containsString("DefaultAction"));
+		assertThat(SlashActionRepository.get("msg").toString(), containsString("DefaultAction"));
 		assertThat(SlashActionRepository.get("quit").toString(), containsString("QuitAction"));
-		assertThat(SlashActionRepository.get("remove").toString(), containsString("RemoveBuddyAction"));
+		assertThat(SlashActionRepository.get("remove").toString(), containsString("DefaultAction"));
 		assertThat(SlashActionRepository.get("sound").toString(), containsString("SoundAction"));
 		assertThat(SlashActionRepository.get("summonat").toString(), containsString("SummonAtAction"));
 		assertThat(SlashActionRepository.get("summon").toString(), containsString("SummonAction"));
-		assertThat(SlashActionRepository.get("supportanswer").toString(), containsString("SupportAnswerAction"));
-		assertThat(SlashActionRepository.get("supporta").toString(), containsString("SupportAnswerAction"));
-		assertThat(SlashActionRepository.get("support").toString(), containsString("SupportAction"));
+		assertThat(SlashActionRepository.get("supportanswer").toString(), containsString("DefaultAction"));
+		assertThat(SlashActionRepository.get("supporta").toString(), containsString("DefaultAction"));
+		assertThat(SlashActionRepository.get("support").toString(), containsString("DefaultAction"));
 		assertThat(SlashActionRepository.get("teleport").toString(), containsString("DefaultAction"));
-		assertThat(SlashActionRepository.get("teleportto").toString(), containsString("TeleportToAction"));
-		assertThat(SlashActionRepository.get("tellall").toString(), containsString("TellAllAction"));
-		assertThat(SlashActionRepository.get("tell").toString(), containsString("MessageAction"));
-		assertThat(SlashActionRepository.get("where").toString(), containsString("WhereAction"));
-		assertThat(SlashActionRepository.get("who").toString(), containsString("WhoAction"));
+		assertThat(SlashActionRepository.get("teleportto").toString(), containsString("DefaultAction"));
+		assertThat(SlashActionRepository.get("tellall").toString(), containsString("DefaultAction"));
+		assertThat(SlashActionRepository.get("tell").toString(), containsString("DefaultAction"));
+		assertThat(SlashActionRepository.get("where").toString(), containsString("DefaultAction"));
+		assertThat(SlashActionRepository.get("who").toString(), containsString("DefaultAction"));
 	}
 
 }
