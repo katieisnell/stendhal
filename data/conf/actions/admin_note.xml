@@ -2,8 +2,10 @@
 <actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../actions.xsd ">
 	<action name="adminnote">
-		<implementation class-name="games.stendhal.client.actions.AdminNoteAction"/>
+		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
 		<type value="adminnote"/>
+		<param key="target" index="0" />
+		<remainder key="note" />
 		<number_of_parameters>
 			<minimum value="1" />
 			<maximum value="1" />
