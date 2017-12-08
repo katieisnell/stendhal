@@ -13,6 +13,7 @@
 package games.stendhal.client.core.config;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import java.io.IOException;
 import java.net.URI;
@@ -45,6 +46,9 @@ public class ActionGroupsXMLLoaderTest {
 		assertEquals(action.getMaximumParameters(), 0);
 		assertEquals(action.getImplementation(), ("games.stendhal.client.actions.InvisibleAction"));
 		assertEquals(action.getType(), ("invisible"));
+		
+		// Parameters and remainders specific to this action		
+		assertNull(action.getRemainder());
 
 	}
 	
@@ -60,8 +64,10 @@ public class ActionGroupsXMLLoaderTest {
 		assertEquals(action.getName(), ("teleport"));
 		assertEquals(action.getMinimumParameters(), 4);
 		assertEquals(action.getMaximumParameters(), 4);
-		assertEquals(action.getImplementation(), ("games.stendhal.client.actions.TeleportAction"));
+		assertEquals(action.getImplementation(), ("games.stendhal.client.actions.DefaultAction"));
 		assertEquals(action.getType(), ("teleport"));
+		
+		assertNull(action.getRemainder());
 
 	}
 	
@@ -79,6 +85,8 @@ public class ActionGroupsXMLLoaderTest {
 		assertEquals(action.getMaximumParameters(), 1);
 		assertEquals(action.getImplementation(), ("games.stendhal.client.actions.MessageAction"));
 		assertEquals(action.getType(), ("tell"));
+		
+		assertEquals(action.getRemainder(), "text");
 
 	}
 }

@@ -45,7 +45,7 @@ public class DefaultActionTest {
         assertEquals(action.getName(), "type");
         assertEquals(action.getParamsKeys()[0], params[0]);
         assertEquals(action.getParamsKeys()[1], params[1]);
-        assertEquals(action.getRemainderKey(), "remainder");
+        assertEquals(action.getRemainder(), "remainder");
 	}
 
 	@Test
