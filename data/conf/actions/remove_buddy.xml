@@ -3,6 +3,7 @@
 	xsi:schemaLocation="stendhal ../actions.xsd ">
 	<action name="removebuddy">
 		<implementation class-name="games.stendhal.client.DefaultAction"/>
+        <type value="removebuddy"/>
 		<param key="target" index="0" />
 		<number_of_parameters>
 			<minimum value="1" />

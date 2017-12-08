@@ -2,7 +2,7 @@
 <actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../actions.xsd ">
 	<action name="listproducers">
-		<implementation class-name="games.stendhal.client.actions.ListProducersAction"/>
+		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
 		<type value="listproducers"/>
 		<number_of_parameters>
 			<minimum value="0" />

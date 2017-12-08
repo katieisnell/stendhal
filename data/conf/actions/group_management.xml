@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../actions.xsd ">
-	<action name="group_management">
-		<implementation class-name="games.stendhal.client.actions.GroupManagementAction"/>
-		<type value="group_management"/>
+	<action name="groupmanagement">
+		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
+		<type value="groupmanagement"/>
+        <param key="action" index="0" />
+		<remainder key="params" />
 		<number_of_parameters>
 			<minimum value="1" />
 			<maximum value="1" />

@@ -2,8 +2,11 @@
 <actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../actions.xsd ">
 	<action name="jail">
-		<implementation class-name="games.stendhal.client.actions.JailAction"/>
+		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
 		<type value="jail"/>
+		<param key="target" index="0" />
+        <param key="minutes" index="1" />         
+        <remainder key="reason" />
 		<number_of_parameters>
 			<minimum value="2" />
 			<maximum value="2" />
