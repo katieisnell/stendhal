@@ -86,7 +86,7 @@ public class SlashActionRepository {
 		//banAction.addParamKeyAtIndex(0, "target");
 		//banAction.addParamKeyAtIndex(1, "hours");
 		//banAction.addRemainderKey("reason");
-		//actions.put("ban", banAction);
+		//actions.put("ban", banActiodefaultActionn);
 
 		actions.put("clear", new ClearChatLogAction());
 		actions.put("clickmode", new ClickModeAction());
@@ -113,7 +113,7 @@ public class SlashActionRepository {
 		//groupManagementAction.addRemainderKey("params");
 		//actions.put("group", groupManagementAction);
 
-		// actions.put("groupmessage", groupMessage);
+		//actions.put("groupmessage", actions.get("groupmessage"));
 		//DefaultAction groupMessageAction = (DefaultAction) actions.get("group_message");
 		//groupMessageAction.addRemainderKey("text");
 		//actions.put("groupmessage", groupMessageAction);
@@ -153,7 +153,7 @@ public class SlashActionRepository {
 		//DefaultAction whoAction = (DefaultAction) actions.get("who");
 		actions.put("names", actions.get("who"));
 
-		actions.put("p", actions.get("groupmessage"));
+		actions.put("p", actions.get("group_message"));
 		actions.put("profile", new ProfileAction());
 		
 		// actions.put("travellog", new TravelLogAction());
