@@ -6,7 +6,7 @@
 		<type value="ban"/>
 		<param key="target" index="0" />
 		<param key="hours" index="1" />			
-		<remainder key="reason" />			
+		<remainder key="reason" canBeEmpty="false"/>			
 		<number_of_parameters>
 			<minimum value="2" />
 			<maximum value="2" />

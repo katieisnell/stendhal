@@ -5,7 +5,7 @@
 		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
 		<type value="tell"/>
         <param key="target" index="0" />
-		<remainder key="text" />
+		<remainder key="text" canBeEmpty="false"/>
 		<number_of_parameters>
 			<minimum value="1" />
 			<maximum value="1" />

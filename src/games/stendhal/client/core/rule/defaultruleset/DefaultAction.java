@@ -21,6 +21,8 @@ public class DefaultAction implements SlashAction{
 	/** Remaining text typed by the user. */
 	private String remainderKey;
 	
+	private boolean remainderCanBeEmpty;
+	
 	/** Minimum number of parameters required for this action */
 	private int minParameters;
 	
@@ -53,7 +55,7 @@ public class DefaultAction implements SlashAction{
 		}
 		
 		// set the action remainder (if there is a remainder)
-		if (this.remainderKey != null) {
+		if (this.remainderKey != null && ((!remainderCanBeEmpty && !remainder.isEmpty()) || (remainderCanBeEmpty))) {
 			action.put(this.remainderKey, remainder);
 		}
 		
@@ -67,6 +69,10 @@ public class DefaultAction implements SlashAction{
 	
 	public void addRemainderKey(String remainderKey) {
 		this.remainderKey = remainderKey;
+	}
+	
+	public void addRemainderEmpty(boolean canBeEmpty) {
+		this.remainderCanBeEmpty = canBeEmpty;
 	}
 	
 	public void setImplementation(String implementation) {

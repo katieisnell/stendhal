@@ -6,7 +6,7 @@
 		<type value="jail"/>
 		<param key="target" index="0" />
         <param key="minutes" index="1" />         
-        <remainder key="reason" />
+        <remainder key="reason" canBeEmpty="true"/>
 		<number_of_parameters>
 			<minimum value="2" />
 			<maximum value="2" />

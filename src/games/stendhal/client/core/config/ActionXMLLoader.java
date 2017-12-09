@@ -43,6 +43,8 @@ public final class ActionXMLLoader extends DefaultHandler {
 	
 	private String remainderKey;
 	
+	private boolean remainderCanBeEmpty;
+	
 	private Map<String, String> parameterValues;
 	
 	private Map<Integer, String> paramIndices;
@@ -102,6 +104,7 @@ public final class ActionXMLLoader extends DefaultHandler {
 		}
 		if (qName.equals("remainder")) {
 			remainderKey = attributes.getValue("key");
+			remainderCanBeEmpty = Boolean.parseBoolean(attributes.getValue("canBeEmpty"));
 		}
 		if(qName.equals("number_of_parameters")) {
 			parameterTagFound = true;
@@ -135,6 +138,7 @@ public final class ActionXMLLoader extends DefaultHandler {
 			}
 			
 			action.addRemainderKey(remainderKey);
+			action.addRemainderEmpty(remainderCanBeEmpty);
 			
 			loadedActions.add(action);
 		}

@@ -37,6 +37,7 @@
     
     <complexType name="remainder">
     		<attribute name="key" type="string" />
+    		<attribute name="canBeEmpty" type="boolean" />
     </complexType>
     
     <complexType name="NumberOfParameters">
