@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../actions.xsd ">
+	<action name="away">
+		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
+		<type value="away"/>
+		<remainder key="message" canBeEmpty="false"/>
+		<number_of_parameters>
+			<minimum value="0" />
+			<maximum value="0" />
+		</number_of_parameters>
+	</action>
+</actions>

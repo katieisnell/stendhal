@@ -4,6 +4,7 @@
 	<group uri="actions/invisible.xml" />
 	<group uri="actions/teleport.xml" />
 	<group uri="actions/message.xml" />
+	<group uri="actions/away.xml" />
 	<group uri="actions/group_management.xml" />
 	<group uri="actions/group_message.xml" />    
 	<group uri="actions/jail.xml" />
