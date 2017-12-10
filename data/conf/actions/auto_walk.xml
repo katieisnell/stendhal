@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../actions.xsd ">
+	
 	<action name="walk">
 		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
 		<type value="walk"/>
@@ -10,4 +11,5 @@
 			<maximum value="0" />
 		</number_of_parameters>
 	</action>
+	
 </actions>

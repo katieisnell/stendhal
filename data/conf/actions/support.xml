@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="stendhal ../actions.xsd ">
+	
 	<action name="support">
 		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
 		<type value="support"/>
@@ -10,4 +11,16 @@
 			<maximum value="0" />
 		</number_of_parameters>
 	</action>
+	
+	<action name="supportanswer">
+		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
+		<type value="supportanswer"/>
+		<param key="target" index="0" />
+		<remainder key="text" canBeEmpty="false"/>
+		<number_of_parameters>
+			<minimum value="1" />
+			<maximum value="1" />
+		</number_of_parameters>
+	</action>
+	
 </actions>
