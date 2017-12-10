@@ -18,23 +18,21 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.MockStendhalClient;
 import games.stendhal.client.StendhalClient;
+import games.stendhal.client.gui.MockUserInterface;
 import marauroa.common.game.RPAction;
 
-public class AwayActionTest {
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
+public class HelpActionTest {
 
 	@After
 	public void tearDown() throws Exception {
 		StendhalClient.resetClient();
 	}
-
+	
 	/**
 	 * Tests for execute.
 	 */
@@ -43,13 +41,18 @@ public class AwayActionTest {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				assertEquals("away", action.get("type"));
-				assertEquals("schnick", action.get("message"));
+				assertEquals("help", action.get("type"));
+				assertEquals("schnick", action.get("text"));
+
 			}
 		};
-
-		final AwayAction action = new AwayAction();
-		assertTrue(action.execute(null, "schnick"));
+		MockUserInterface mockInterface = new MockUserInterface();
+		ClientSingletonRepository.setUserInterface(mockInterface);
+		final HelpAction action = new HelpAction();
+		// Try to execute the action and make sure it executes correctly
+		assertTrue(action.execute(new String[] {null}, ""));
+		// Check that the output of execution is as expected for volume
+		assertEquals(mockInterface.getLastEventLine(), "- /volume\t\tLists or sets the volume for sound and music");
 	}
 
 	/**
@@ -57,7 +60,7 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final AwayAction action = new AwayAction();
+		final HelpAction action = new HelpAction();
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
@@ -66,7 +69,8 @@ public class AwayActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final AwayAction action = new AwayAction();
+		final HelpAction action = new HelpAction();
 		assertThat(action.getMinimumParameters(), is(0));
 	}
+
 }

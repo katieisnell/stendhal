@@ -13,49 +13,42 @@
 package games.stendhal.client.actions;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
-import org.junit.After;
 import org.junit.Test;
 
+import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.client.MockStendhalClient;
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.gui.MockUserInterface;
 import marauroa.common.game.RPAction;
 
-public class WhoActionTest {
+public class VolumeActionTest {
 
-	@After
-	public void tearDown() throws Exception {
-		StendhalClient.resetClient();
-	}
-
-	/**
-	 * Tests for execute.
-	 */
 	@Test
 	public void testExecute() {
 		new MockStendhalClient() {
 			@Override
 			public void send(final RPAction action) {
-				for (final String attrib : action) {
-					assertEquals("type", attrib);
-					assertEquals("who", (action.get(attrib)));
-				}
+				assertEquals("volume", action.get("type"));
 			}
 		};
-		final WhoAction action = new WhoAction();
-		assertTrue(action.execute(null, null));
+		MockUserInterface inter = new MockUserInterface();
+		ClientSingletonRepository.setUserInterface(inter);
+		final VolumeAction action = new VolumeAction();
+		assertTrue(action.execute(new String[] {null}, ""));
+		assertEquals(inter.getLastEventLine(), "master -> 0");
+		assertTrue(action.execute(new String[] {"master", null}, ""));
+		assertEquals(inter.getLastEventLine(), "Please use /volume for help.");
+		assertTrue(action.execute(new String[] {"master", "85"}, ""));
 	}
-
+	
 	/**
-	 * Tests for getMaximumParameters().
+	 * Tests for getMaximumParameters.
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final WhoAction action = new WhoAction();
-		assertThat(action.getMaximumParameters(), is(0));
+		final VolumeAction action = new VolumeAction();
+		assertThat(action.getMaximumParameters(), is(2));
 	}
 
 	/**
@@ -63,8 +56,7 @@ public class WhoActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final WhoAction action = new WhoAction();
+		final VolumeAction action = new VolumeAction();
 		assertThat(action.getMinimumParameters(), is(0));
 	}
-
 }

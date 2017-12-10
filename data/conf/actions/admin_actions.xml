@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal ../actions.xsd ">
+	
+	<action name="adminnote">
+		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
+		<type value="adminnote"/>
+		<param key="target" index="0" />
+		<remainder key="note" canBeEmpty="false"/>
+		<number_of_parameters>
+			<minimum value="1" />
+			<maximum value="1" />
+		</number_of_parameters>
+	</action>
+	
+	<action name="inspect">
+		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
+		<type value="inspect"/>
+		<param key="target" index="0" />
+		<number_of_parameters>
+			<minimum value="1" />
+			<maximum value="1" />
+		</number_of_parameters>
+	</action>
+	
+	<action name="invisible">
+		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
+		<type value="invisible"/>
+		<number_of_parameters>
+			<minimum value="0" />
+			<maximum value="0" />
+		</number_of_parameters>
+	</action>
+	
+	<action name="tellall">
+		<implementation class-name="games.stendhal.client.actions.DefaultAction"/>
+		<type value="tellall"/>
+		<remainder key="text" canBeEmpty="false"/>
+		<number_of_parameters>
+			<minimum value="0" />
+			<maximum value="0" />
+		</number_of_parameters>
+	</action>
+	
+</actions>

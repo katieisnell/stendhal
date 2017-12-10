@@ -29,6 +29,11 @@ public class SlashActionRepositoryTest {
 	 */
 	@Test
 	public void testGet() {
+		// Generic name for the migrated actions in XML
+		String defaultAction = "DefaultAction";
+		
+		// Make sure that the SlashActionRepository is using the Java files for those in Java
+		// and is using the DefaulAction ruleset for those actions migrated to XML
 		assertThat(SlashActionRepository.get("alter").toString(), containsString("AlterAction"));
 		assertThat(SlashActionRepository.get("/").toString(), containsString("RemessageAction"));
 		assertThat(SlashActionRepository.get("add").toString(), containsString("AddBuddyAction"));
@@ -37,31 +42,31 @@ public class SlashActionRepositoryTest {
 		assertThat(SlashActionRepository.get("altercreature").toString(), containsString("AlterCreatureAction"));
 		assertThat(SlashActionRepository.get("alterquest").toString(), containsString("AlterQuestAction"));
 		assertThat(SlashActionRepository.get("answer").toString(), containsString("AnswerAction"));
-		assertThat(SlashActionRepository.get("away").toString(), containsString("AwayAction"));
+		assertThat(SlashActionRepository.get("away").toString(), containsString(defaultAction));
 		assertThat(SlashActionRepository.get("drop").toString(), containsString("DropAction"));
-		assertThat(SlashActionRepository.get("gag").toString(), containsString("GagAction"));
+		assertThat(SlashActionRepository.get("gag").toString(), containsString(defaultAction));
 		assertThat(SlashActionRepository.get("gmhelp").toString(), containsString("GMHelpAction"));
-		assertThat(SlashActionRepository.get("grumpy").toString(), containsString("GrumpyAction"));
+		assertThat(SlashActionRepository.get("grumpy").toString(), containsString(defaultAction));
 		assertThat(SlashActionRepository.get("help").toString(), containsString("HelpAction"));
 		assertThat(SlashActionRepository.get("ignore").toString(), containsString("IgnoreAction"));
-		assertThat(SlashActionRepository.get("inspect").toString(), containsString("InspectAction"));
-		assertThat(SlashActionRepository.get("invisible").toString(), containsString("InvisibleAction"));
-		assertThat(SlashActionRepository.get("jail").toString(), containsString("JailAction"));
-		assertThat(SlashActionRepository.get("msg").toString(), containsString("MessageAction"));
+		assertThat(SlashActionRepository.get("inspect").toString(), containsString(defaultAction));
+		assertThat(SlashActionRepository.get("invisible").toString(), containsString(defaultAction));
+		assertThat(SlashActionRepository.get("jail").toString(), containsString(defaultAction));
+		assertThat(SlashActionRepository.get("msg").toString(), containsString(defaultAction));
 		assertThat(SlashActionRepository.get("quit").toString(), containsString("QuitAction"));
-		assertThat(SlashActionRepository.get("remove").toString(), containsString("RemoveBuddyAction"));
+		assertThat(SlashActionRepository.get("remove").toString(), containsString(defaultAction));
 		assertThat(SlashActionRepository.get("sound").toString(), containsString("SoundAction"));
 		assertThat(SlashActionRepository.get("summonat").toString(), containsString("SummonAtAction"));
 		assertThat(SlashActionRepository.get("summon").toString(), containsString("SummonAction"));
-		assertThat(SlashActionRepository.get("supportanswer").toString(), containsString("SupportAnswerAction"));
-		assertThat(SlashActionRepository.get("supporta").toString(), containsString("SupportAnswerAction"));
-		assertThat(SlashActionRepository.get("support").toString(), containsString("SupportAction"));
-		assertThat(SlashActionRepository.get("teleport").toString(), containsString("TeleportAction"));
-		assertThat(SlashActionRepository.get("teleportto").toString(), containsString("TeleportToAction"));
-		assertThat(SlashActionRepository.get("tellall").toString(), containsString("TellAllAction"));
-		assertThat(SlashActionRepository.get("tell").toString(), containsString("MessageAction"));
-		assertThat(SlashActionRepository.get("where").toString(), containsString("WhereAction"));
-		assertThat(SlashActionRepository.get("who").toString(), containsString("WhoAction"));
+		assertThat(SlashActionRepository.get("supportanswer").toString(), containsString(defaultAction));
+		assertThat(SlashActionRepository.get("supporta").toString(), containsString(defaultAction));
+		assertThat(SlashActionRepository.get("support").toString(), containsString(defaultAction));
+		assertThat(SlashActionRepository.get("teleport").toString(), containsString(defaultAction));
+		assertThat(SlashActionRepository.get("teleportto").toString(), containsString(defaultAction));
+		assertThat(SlashActionRepository.get("tellall").toString(), containsString(defaultAction));
+		assertThat(SlashActionRepository.get("tell").toString(), containsString(defaultAction));
+		assertThat(SlashActionRepository.get("where").toString(), containsString(defaultAction));
+		assertThat(SlashActionRepository.get("who").toString(), containsString(defaultAction));
 	}
 
 }

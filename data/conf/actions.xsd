@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="stendhal"
+	xmlns:tns="http://www.example.org/actions" elementFormDefault="qualified"
+	xmlns:Q3="stendhal">
+	
+	<element name="actions" type="Q3:Actions" />
+	
+	<complexType name="Actions" >
+		<sequence>
+			<element name="action" type="Q3:Action" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="Action">
+		<sequence>
+			<element name="implementation" type="Q3:Implementation" />
+			<element name="type" type="Q3:Type" />
+			<element name="param" type="Q3:Param" minOccurs="0" maxOccurs="unbounded" />
+			<element name="remainder" type="Q3:remainder" minOccurs="0" maxOccurs="1" />
+			<element name="number_of_parameters" type="Q3:NumberOfParameters" />
+		</sequence>
+		<attribute name="name" type="string" use="required"/>
+	</complexType>
+	
+	<complexType name="Implementation">
+    		<attribute name="class-name" type="string" />
+    </complexType>
+    
+    <complexType name="Type">
+    		<attribute name="value" type="string" />
+    </complexType>
+    
+    <complexType name="Param">
+    		<attribute name="key" type="string" />
+    		<attribute name="index" type="integer" />
+    </complexType>
+    
+    <complexType name="remainder">
+    		<attribute name="key" type="string" />
+    		<attribute name="canBeEmpty" type="boolean" />
+    </complexType>
+    
+    <complexType name="NumberOfParameters">
+	    	<sequence>
+	    		<element name="minimum" type="Q3:parameter_type" />
+	    		<element name="maximum" type="Q3:parameter_type" />
+	    	</sequence>
+    </complexType>
+    
+    <complexType name="parameter_type">
+    		<attribute name="value" type="string" />
+    </complexType>
+    
+	
+</schema>

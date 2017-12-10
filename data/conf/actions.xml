@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<groups xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="stendhal groups.xsd ">
+	<group uri="actions/admin_actions.xml" />
+	<group uri="actions/auto_walk.xml" />
+	<group uri="actions/away.xml" />
+	<group uri="actions/group_management.xml" />
+	<group uri="actions/information.xml" />
+	<group uri="actions/punish.xml" />
+	<group uri="actions/social.xml" />
+	<group uri="actions/support.xml" />
+	<group uri="actions/teleport.xml" />
+</groups>
