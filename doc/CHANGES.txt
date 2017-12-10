@@ -1,6 +1,10 @@
 ﻿Changelog
 ---------
-
+1.29uom
+*client*
+- migrated a subset of client actions to XML and facilitated
+  the process of adding new actions in the future
+  
 1.28uom
 *world*
 - added a Lon Jatham NPC that, when the player is holding 

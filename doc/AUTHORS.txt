@@ -171,30 +171,37 @@ Authors of Stendhal are:
   · Implemented 'Bank statement scrolls' feature
   · Bugs fixer
   · Coder
+  · Contributed with the initial helper files and test coverage
 - Luke Sheldon
   · Implemented 'Ados ross upstairs' feature
   · Bugs fixer
   · Coder
+  · Migrated actions to XML
 - Katie Snell
   · Implemented 'Lon jatham' feature
   · Bugs fixer
   · Coder
+  · Contributed with initial helper files and test coverage
 - Poppy Reid
   · Implemented 'Lon jatham' feature
   · Bugs fixer
   · Coder
+  · Contributed with initial helper files and test coverage
 - Anthony Sikosa
   · Implemented 'Ados ross upstairs' feature
   · Bugs fixer
   · Coder
+  · Migrated actions to XML
 - Diana Pislaru
   · Implemented 'Bank statement scrolls' feature
   · Bugs fixer
   · Coder
+  · Contributed with initial helper files
 - Khoi Minh Nguyen
   · Implemented 'Ados ross upstairs' feature
   · Bugs fixer
   · Coder
+  · Migrated actions to XML
 
 We also thank many who have contributed to Stendhal by providing patches,
 which the rest of the team commited on their behalf. 
