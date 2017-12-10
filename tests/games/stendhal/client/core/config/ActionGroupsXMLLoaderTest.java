@@ -13,8 +13,6 @@
 package games.stendhal.client.core.config;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -38,7 +36,7 @@ public class ActionGroupsXMLLoaderTest {
 		// Load the action
 		ActionGroupsXMLLoader loader = new ActionGroupsXMLLoader(new URI("actionstest.xml"));
 		List<DefaultAction> list = loader.load();
-		DefaultAction action = list.get(0);		
+		DefaultAction action = list.get(2);		
 		
 		//Check XML data is dealt with properly
 		assertEquals(action.getName(), ("invisible"));
@@ -48,7 +46,7 @@ public class ActionGroupsXMLLoaderTest {
 		assertEquals(action.getType(), ("invisible"));
 		
 		// Parameters and remainders specific to this action		
-		assertNull(action.getRemainder());
+		assertEquals(action.getRemainder(), ("note"));
 
 	}
 	
@@ -58,7 +56,7 @@ public class ActionGroupsXMLLoaderTest {
 		// Load the action
 		ActionGroupsXMLLoader loader = new ActionGroupsXMLLoader(new URI("actionstest.xml"));
 		List<DefaultAction> list = loader.load();
-		DefaultAction action = list.get(1);	
+		DefaultAction action = list.get(4);	
 		
 		//Check XML data is dealt with properly
 		assertEquals(action.getName(), ("teleport"));
@@ -67,7 +65,7 @@ public class ActionGroupsXMLLoaderTest {
 		assertEquals(action.getImplementation(), ("games.stendhal.client.actions.DefaultAction"));
 		assertEquals(action.getType(), ("teleport"));
 		
-		assertNull(action.getRemainder());
+		assertEquals(action.getRemainder(), ("text"));
 
 	}
 	
@@ -77,7 +75,7 @@ public class ActionGroupsXMLLoaderTest {
 		// Load the action
 		ActionGroupsXMLLoader loader = new ActionGroupsXMLLoader(new URI("actionstest.xml"));
 		List<DefaultAction> list = loader.load();
-		DefaultAction action = list.get(2);	
+		DefaultAction action = list.get(7);	
 		
 		//Check XML data is dealt with properly
 		assertEquals(action.getName(), ("tell"));

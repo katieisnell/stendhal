@@ -53,13 +53,13 @@ public class DefaultActionTest {
 		
 		// Load the action - this involves calling the execute method
 		ActionXMLLoader action = new ActionXMLLoader();
-		action.load(new URI("/data/conf/actions/invisible.xml"));
+		action.load(new URI("/data/conf/actions/admin_actions.xml"));
 		
 		//Check XML data is dealt with properly
-		assertEquals(action.getName(), ("invisible"));
+		assertEquals(action.getName(), ("tellall"));
 		assertEquals(action.getMinimumParameters(), ("0"));
 		assertEquals(action.getMaximumParameters(), ("0"));
 		assertEquals(action.getImplementation(), ("games.stendhal.client.actions.DefaultAction"));
-		assertEquals(action.getType(), ("invisible"));
+		assertEquals(action.getType(), ("tellall"));
 	}
 }
