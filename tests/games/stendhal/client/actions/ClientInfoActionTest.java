@@ -18,7 +18,6 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.client.ClientSingletonRepository;
@@ -28,9 +27,6 @@ import games.stendhal.client.gui.MockUserInterface;
 import marauroa.common.game.RPAction;
 
 public class ClientInfoActionTest {
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
 
 	@After
 	public void tearDown() throws Exception {
@@ -48,9 +44,10 @@ public class ClientInfoActionTest {
 				assertEquals("support", action.get("type"));
 			}
 		};
-		MockUserInterface inter = new MockUserInterface();
-		ClientSingletonRepository.setUserInterface(inter);
+		MockUserInterface mockInterface = new MockUserInterface();
+		ClientSingletonRepository.setUserInterface(mockInterface);
 		final ClientInfoAction action = new ClientInfoAction();
+		// Try to execute the action and make sure it executes correctly
 		assertTrue(action.execute(new String[] {null}, ""));
 	}
 	

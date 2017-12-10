@@ -18,7 +18,6 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.client.ClientSingletonRepository;
@@ -28,10 +27,6 @@ import games.stendhal.client.gui.MockUserInterface;
 import marauroa.common.game.RPAction;
 
 public class HelpActionTest {
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
 
 	@After
 	public void tearDown() throws Exception {
@@ -51,11 +46,13 @@ public class HelpActionTest {
 
 			}
 		};
-		MockUserInterface inter = new MockUserInterface();
-		ClientSingletonRepository.setUserInterface(inter);
+		MockUserInterface mockInterface = new MockUserInterface();
+		ClientSingletonRepository.setUserInterface(mockInterface);
 		final HelpAction action = new HelpAction();
+		// Try to execute the action and make sure it executes correctly
 		assertTrue(action.execute(new String[] {null}, ""));
-		assertEquals(inter.getLastEventLine(), "- /volume\t\tLists or sets the volume for sound and music");
+		// Check that the output of execution is as expected for volume
+		assertEquals(mockInterface.getLastEventLine(), "- /volume\t\tLists or sets the volume for sound and music");
 	}
 
 	/**
